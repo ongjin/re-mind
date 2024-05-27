@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reservationMapper">
+	
+	<!-- 결제예약결제 vo -->
+	<resultMap type="ReservationPayMent" id="reservationPayMent_rm">
+		<id property="reservationPayNo" column="RESERVATION_PAY_NO"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="professionNo" column="PROFESSION_NO"/>
+		<result property="totalCnt" column="TOTAL_CNT"/>
+		<result property="usedCnt" column="USED_CNT"/>
+		<result property="statusCode" column="STATUS_CD"/>
+	</resultMap>
+	
+	<!-- 결제 vo -->
+	<resultMap type="Payment" id="Payment_rm">
+		<id property="payNo" column="PAY_NO"/>
+		<result property="payAmount" column="PAY_AMOUNT"/>
+		<result property="payDate" column="PAY_DT"/>
+		<result property="payUpdateDate" column="PAY_UPDATE_DT"/>
+		<result property="paymentStatus" column="PAYMENT_STATUS"/>
+		<result property="reservationNo" column="RESERVATION_NO"/>
+	</resultMap>
+	
+	<!-- 상담예약 vo -->
+	<resultMap type="Reservation" id="Reservation_rm">
+		<id property="reservationNo" column="RESERVATION_NO"/>
+		<result property="reservationEnrollDate" column="RESERVATION_ENROLL_DT"/>
+		<result property="reservationEnrollTime" column="RESERVATION_ENROLL_TIME"/>
+		<result property="reservationStatusCode" column="RESERVATION_STATUS_CD"/>
+		<result property="reservationCancel" column="RESERVATION_CANCEL"/>
+		<result property="counselCategoryNo" column="COUNSEL_CATEGORY_NO"/>
+		<result property="counselCategoryNm" column="COUNSEL_CATEGORY_NM"/>
+		<result property="professionName" column="PROFESSION_NM"/>
+		<result property="professionNo" column="PROFESSION_NO"/>
+		<result property="intEnrollDate" column="INTENROLLDT"/>
+		<result property="checkReview" column="CHECK_REVIEW"/>
+	</resultMap>
+	
+	<!-- 상담사 리뷰 vo -->
+	<resultMap type="Review" id="Review_rm">
+		<id property="REVIEW_NO" column="REVIEW_NO"/>
+		<result property="reviewContent" column="REVIEW_CONTENT"/>
+		<result property="reviewStarPoint" column="REVIEW_STARPOINT"/>
+		<result property="professionNo" column="PROFESSION_NO"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="reviewDate" column="REVIEW_DT"/>
+		<result property="reservationNo" column="RESERVATION_NO"/>
+		<result property="counselCategoryNm" column="COUNSEL_CATEGORY_NM"/>
+		<result property="listCount" column="LIST_COUNT"/>
+		<result property="enrollDate" column="ENROLL_DTDT"/>
+	</resultMap>
+	
+	<!-- 상담예약결제 insert -->
+	<insert id="reservationPaymentInsert" useGeneratedKeys="true">
+	
+		<selectKey order="BEFORE" resultType="_int" keyProperty="reservationPayNo">
+			SELECT SEQ_RESERVATION_PAYMENT_NO.NEXTVAL FROM DUAL
+		</selectKey>
+
+		INSERT INTO RESERVATION_PAYMENT 
+		VALUES(#{reservationPayNo},#{memberNo},#{professionNo},#{totalCnt},DEFAULT,DEFAULT)
+		
+	</insert>
+	
+	<!-- 상담사 별 금액 조회 -->
+	<select id="professionPriceSelect" resultType="_int">
+		SELECT COUNSEL_PRICE
+		FROM PROFESSION_PRICE
+		WHERE COUNSEL_CATEGORY_NO = #{counselCategoryCode} AND PROFESSION_NO = #{professionNo}
+	</select>
+	
+	<!-- 결제 tb에 총금액 상담 예약결제번호 insert -->
+	<insert id="paymentInsert" useGeneratedKeys="true">
+	
+		<selectKey order="BEFORE" resultType="_int" keyProperty="payNo">
+			SELECT SEQ_PAY_NO.NEXTVAL FROM DUAL
+		</selectKey>
+
+		INSERT INTO PAYMENT
+		VALUES(#{payNo},#{payAmount},NULL,NULL,NULL,#{reservationNo})
+	</insert>
+	
+	<!-- 총 금액 select -->
+	<select id="priceSelect" resultType="_int">
+		SELECT PAY_AMOUNT FROM PAYMENT WHERE PAY_NO = #{payNo}
+	</select>
+	
+	<!-- payment update -->
+	<update id="paymentUpdate">
+		UPDATE PAYMENT SET
+		PAY_DT = SYSDATE,
+		PAYMENT_STATUS = 1
+		WHERE PAY_NO = #{payNo}
+	</update>
+	
+	<!-- reservation insert -->
+	<insert id="reservationInsert">
+		<![CDATA[
+			INSERT INTO RESERVATION
+			VALUES(SEQ_RESERVATION_NO.NEXTVAL,#{reservationEnrollDate},#{reservationEnrollTime},1,NULL,
+			(SELECT COUNSEL_CATEGORY_NO FROM COUNSEL_CATEGORY WHERE COUNSEL_CATEGORY_NM = #{counselCategoryNm}),
+			(SELECT RESERVATION_NO FROM PAYMENT WHERE PAY_NO = #{payNo}))
+		]]>
+	</insert>
+	
+	<!-- 결제 취소가 되었을 경우  -->
+	
+	<!-- prservation_no select -->
+	<select id="reservationNoSelect" resultType="_int">
+		SELECT RESERVATION_NO FROM PAYMENT WHERE PAY_NO = #{payNo}
+	</select>
+	
+	<!-- reservationPayment 삭제 -->
+	<delete id="reservationPaymentDelete">
+		DELETE FROM RESERVATION_PAYMENT WHERE RESERVATION_PAY_NO = #{reservationNo}
+	</delete>
+	
+	<!-- payment 삭제 -->
+	<delete id="paymentDelete">
+		DELETE FROM PAYMENT WHERE PAY_NO = #{payNo}
+	</delete>
+	
+	<!-- 후기 가지고오기 -->
+	<select id="reviewListSelect" resultMap="Review_rm">
+		SELECT * FROM(
+			SELECT ROWNUM AS RNUM, TEMP.*
+			FROM(
+				SELECT REVIEW_CONTENT, REVIEW_STARPOINT,
+					TO_CHAR(REVIEW_DT, 'YYYY"-"MM"-"DD' ) ENROLL_DTDT,
+					COUNSEL_CATEGORY_NM
+				FROM REVIEW
+				JOIN RESERVATION R USING(RESERVATION_NO)
+				JOIN COUNSEL_CATEGORY C ON(C.COUNSEL_CATEGORY_NO = R.COUNSEL_CATEGORY_NO)
+				WHERE PROFESSION_NO = #{professionNo}
+				ORDER BY REVIEW_DT DESC
+		    ) TEMP
+		)
+		WHERE RNUM BETWEEN 1 AND 5
+	</select>
+	
+	<!-- 별점만 가지고 오기 -->
+	<select id="starPointSelect" resultMap="Review_rm">
+		SELECT REVIEW_STARPOINT
+		FROM (
+			SELECT * FROM REVIEW WHERE PROFESSION_NO=#{professionNo} ORDER BY REVIEW_DT DESC
+		) TEMP
+		WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
+	
+	<!-- 상담사별 후기 평균 가지고오기 -->
+	<select id="starPointAverage" resultType="_int">
+		SELECT AVG(REVIEW_STARPOINT)
+		FROM REVIEW
+		WHERE PROFESSION_NO = #{professionNo}
+	</select>
+
+	<insert id="insertChatting">
+		INSERT INTO CHATTING VALUES(SEQ_CHATTING_NO.NEXTVAL, TO_DATE(#{reservationEnrollTime}, 'YYYY-MM-DD 00:00:00'), DEFAULT,  #{reservationNo})
+	</insert>
+	
+	<!-- 상담사 후기 더보기 -->
+	<select id="reviewAdd" resultMap="Review_rm">
+		SELECT * FROM(
+             SELECT ROWNUM AS RNUM, TEMP.*
+             FROM(
+                 SELECT REVIEW_CONTENT, REVIEW_STARPOINT,
+                        TO_CHAR(REVIEW_DT, 'YYYY"-"MM"-"DD' ) ENROLL_DTDT,
+                        COUNSEL_CATEGORY_NM
+                 FROM REVIEW
+	                      JOIN RESERVATION R USING(RESERVATION_NO)
+	                      JOIN COUNSEL_CATEGORY C ON(C.COUNSEL_CATEGORY_NO = R.COUNSEL_CATEGORY_NO)
+                 WHERE PROFESSION_NO = #{professionNo}
+                 ORDER BY REVIEW_DT DESC
+             ) TEMP
+         )
+		WHERE RNUM BETWEEN #{first} AND #{last}
+	</select>
+	
+	<select id="listCountSelect" resultType="_int">
+		SELECT COUNT(*) LIST_COUNT FROM REVIEW WHERE PROFESSION_NO = #{professionNo}	
+	</select>
+	
+	<select id="appointmentPast" resultMap="Reservation_rm">
+		<![CDATA[
+			
+			SELECT P.PROFESSION_NO,RESERVATION_NO,PROFESSION_NM,
+			TO_CHAR(RESERVATION_ENROLL_DT, 'YYYY"-"MM"-"DD' ) RESERVATION_ENROLL_DT
+			, RESERVATION_ENROLL_TIME AS INTENROLLDT,COUNSEL_CATEGORY_NM, NVL(REVIEW_NO, 0) CHECK_REVIEW
+			FROM RESERVATION 
+			    JOIN RESERVATION_PAYMENT USING(RESERVATION_PAY_NO)
+			    JOIN COUNSEL_CATEGORY USING(COUNSEL_CATEGORY_NO)
+			    JOIN PROFESSION P ON(P.PROFESSION_NO = RESERVATION_PAYMENT.PROFESSION_NO)
+			    LEFT JOIN REVIEW USING(RESERVATION_NO)
+			WHERE RESERVATION_PAYMENT.MEMBER_NO = #{memberNo} AND RESERVATION_ENROLL_DT < SYSDATE
+
+		]]>
+	</select>
+	
+	<select id="proPriceSelect" resultType="string">
+		SELECT LISTAGG(COUNSEL_PRICE,',') WITHIN GROUP(ORDER BY PROFESSION_NO) AS COUNSEL_PRICE
+		FROM PROFESSION_PRICE
+		WHERE PROFESSION_NO = #{professionNo}
+	</select>
+</mapper>

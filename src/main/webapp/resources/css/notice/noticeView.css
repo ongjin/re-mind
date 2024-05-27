@@ -1,0 +1,133 @@
+.side_menu{
+	display:none;
+}
+
+
+.main_content{
+    width: 100%;
+    padding-top: 120px;
+    color: #454545;
+}
+
+
+.notice_title{
+    border-top : 1px solid #838383;
+    height: 75px;
+    line-height: 70px;
+}
+
+.notice_title p{
+    text-align: center;
+    font-size: 18px;
+}
+
+.notice_subject{
+    border-top : 1px solid #dae0e9;
+    height: 65px;
+    padding: 0 2%;
+    line-height: 63px;
+    
+}
+
+.notice_subject:nth-child(1){
+    font-size: 14px;
+}
+
+.notice_countview{
+    font-size: 14px;
+    float: right;
+}
+
+.notice_content{
+    border-top : 1px solid #dae0e9;
+    padding : 40px 20px;
+    color: #222;
+    height: 500px;
+}
+
+.notice_prev{
+    border-top: 1px solid #dae0e9;
+    padding-left: 2%;
+    height: 60px;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+.notice_next{
+    border-top: 1px solid #dae0e9;
+    border-bottom: 1px solid #dae0e9;
+    padding-left: 2%;
+    height: 60px;
+    line-height: 60px;
+    cursor: pointer;
+
+}
+
+.notice_prev > span , .notice_next > span {
+    margin-right: 8%;
+}
+
+.notice_button{
+    text-align: center;
+    padding-top: 50px;
+    margin: 0 auto;
+    margin-bottom: 150px;
+}
+
+.notice_button button{
+    width: 12%;
+    height: 65px;
+    font-size: 14px;
+    background-color: #a59999;
+    border: 0;
+    color: #F1F0F0;
+}
+
+
+
+/* ----------모바일 --------------- */
+@media screen and (max-width: 768px){
+
+    .main_content{
+        padding-top: 30px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .notice_content{
+        min-height: 100x;
+    }
+   
+
+    .notice_title  p{
+        font-size: 15px;
+        overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    }
+
+    .notice_date{
+        font-size: 12px;
+        
+    }
+
+    .notice_prev * , .notice_next * {
+        font-size: 13px;
+    }
+
+    .notice_prev > span , .notice_next > span {
+        margin-right: 7px;
+    }
+
+    .notice_button{
+        margin-bottom: 20px;
+        margin-top : 30px;
+    }
+    .notice_button button{
+        width: 70px;
+   
+    }
+
+    footer{
+        display: none;
+    }
+
+}

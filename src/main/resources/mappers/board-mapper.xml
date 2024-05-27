@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+
+	<resultMap type="Board" id="board_rm">
+		<id property="boardNo" column="BOARD_NO"/>
+		
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="createDate" column="BOARD_CREATE_DT"/>
+		<result property="modifyDate" column="BOARD_MODIFY_DT"/>
+		<result property="replyCheckCode" column="REPLY_CHECK_CD"/>
+		<result property="scrapCheckCode" column="SCRAP_CHECK_CD"/>
+		<result property="anonCheckCode" column="ANON_CHECK_CD"/>
+		<result property="empathyCheckCode" column="EM_CHECK_CD"/>
+		<result property="readCount" column="BOARD_READ_COUNT"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="memberFn" column="MEMBER_FN"/>
+		<result property="memberId" column="MEMBER_ID"/>
+		<result property="professionNo" column="PROFESSION_NO"/>
+		<result property="professionName" column="PROFESSION_NM"/>
+		<result property="statusCode" column="BOARD_STATUS_CD"/>
+		<result property="boardCategoryCode" column="BOARD_CATEGORY_CD"/>
+		<result property="boardCategoryName" column="BOARD_CATEGORY_NM"/>
+		<result property="worryCategoryCode" column="WORRY_CATEGORY_CD"/>
+		<result property="worryCategoryName" column="WORRY_NM"/>
+
+		<result property="empathyStatusCode" column="EMPATHY_STATUS_CD"/>
+		<result property="empathyStatusName" column="EMPATHY_STATUS_NM"/>
+
+		<result property="empEnrollDate" column="EMP_ENROLL_DT"/>
+		
+		<result property="replyCount" column="REPLY_COUNT"/>
+		<result property="memberImage" column="MEMBER_IMAGE"/>
+
+		<result property="professionImage" column="PROFESSION_IMAGE"/>
+		
+		<result property="likeCount" column="L_COUNT"/>
+		<result property="cheerCount" column="C_COUNT"/>
+		<result property="sadCount" column="SA_COUNT"/>
+		<result property="angryCount" column="A_COUNT"/>
+		<result property="surpriseCount" column="SU_COUNT"/>
+		<result property="profrssionImage" column="PROFESSION_IMAGE"/>
+
+		<result property="worryEmpathyArray" column="EMPATHY_ARRAY"/>
+		<result property="worryCntArray" column="CNT_ARRAY"/>
+
+		<result property="imageName" column="IMAGE_NM"/>
+		<result property="imagePath" column="IMAGE_PATH"/>
+		<result property="postNo" column="POST_NO"/>
+		<result property="maxValue" column="MAX_VALUE"/>
+
+		<result property="reviewStarpoint" column="REVIEW_STARPOINT"/>
+		<result property="proIntro" column="PRO_INTRO"/>
+		<result property="counselPrice" column="COUNSEL_PRICE"/>
+		<result property="avgReviewStarpoint" column="AVG_REVIEW_STARPOINT"/>
+		<result property="countStar" column="COUNT_STAR"/>
+		<result property="priceMin" column="PRICE_MIN"/>
+		<result property="reviewCount" column="REVIEW_COUNT"/>
+		<result property="reviewAvg" column="REVIEW_AVG"/>
+
+		<result property="letterNo" column="LETTER_NO"/>
+		<result property="letterContent" column="LETTER_CONTENT"/>
+		<result property="letterDate" column="LETTER_DT"/>
+		<result property="letterType" column="LETTER_TYPE"/>
+		<result property="letterStatusCode" column="LETTER_STATUS_CODE"/>
+
+
+		<collection property="imgList" column="BOARD_NO"
+					javaType="java.util.ArrayList" ofType="Image" select="selectBoardImageList"/>
+		
+		<collection property="profileImgList" column="BOARD_NO"
+					javaType="java.util.ArrayList" ofType="Image" select="selectProfileImageList"/>
+		<collection property="emList" column="BOARD_NO"
+						javaType="java.util.ArrayList" ofType="Empathy" select="selectEmpathyList"/>
+	</resultMap>
+
+	<resultMap id="letter_rm" type="MyLetter">
+		<id property="letterNo" column="LETTER_NO"/>
+		<result property="letterContent" column="LETTER_CONTENT"/>
+		<result property="letterDate" column="LETTER_DT"/>
+		<result property="letterType" column="LETTER_TYPE"/>
+		<result property="letterStatusCode" column="LETTER_STATUS_CD"/>
+		<result property="professionNo" column="PROFESSION_NO"/>
+		<result property="professionName" column="PROFESSION_NM"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+	</resultMap>
+
+
+	<resultMap type="Image" id="image_rm">
+		<id property="imageNo" column="IMAGE_NO"/>
+		<result property="imagePath" column="IMAGE_PATH"/>
+		<result property="imageName" column="IMAGE_NM"/>
+		<result property="imageOriginal" column="IMAGE_ORIGINAL"/>
+		<result property="imageLevel" column="IMAGE_LEVEL"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="boardNo" column="PROFESSION_NO"/>
+		<result property="professionNo" column="BOARD_NO"/>
+		<result property="professionName" column="PROFESSION_NM"/>
+	</resultMap>
+
+    <resultMap type="Empathy" id="empathy_rm">
+    	<result property="boardNo" column="BOARD_NO"/>
+    	<result property="memberNo" column="MEMBER_NO"/>
+
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="empEnrollDate" column="EMP_ENROLL_DT"/>
+		<result property="boardCategoryName" column="BOARD_CATEGORY_NM"/>
+		<result property="memberFn" column="MEMBER_FN"/>
+		<result property="readCount" column="BOARD_READ_COUNT"/>
+		<result property="imagePath" column="IMAGE_PATH"/>
+		<result property="imageName" column="IMAGE_NM"/>
+    	<result property="empathyStatusCode" column="EMPATHY_STATUS_CD"/>
+    	<result property="empathyStatusName" column="EMPATHY_STATUS_NM"/>
+    	<result property="maxValue" column="MAX_VALUE"/>
+
+    </resultMap>
+
+
+	<resultMap id="scrap_rm" type="Scrap">
+		<id property="scrapNo" column="SCRAP_NO"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="boardNo" column="BOARD_NO"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="imagePath" column="IMAGE_PATH"/>
+		<result property="imageName" column="IMAGE_NM"/>
+		<result property="boardStatusCode" column="BOARD_STATUS_CD"/>
+		<result property="boardStatusName" column="BOARD_STATUS_NM"/>
+		<result property="readCount" column="BOARD_READ_COUNT"/>
+		<result property="enrollDate" column="ENROLL_DT"/>
+		<result property="maxValue" column="MAX_VALUE"/>
+		<result property="boardCategoryName" column="BOARD_CATEGORY_NM"/>
+ 	</resultMap>
+ 	
+ 	<resultMap type="Report" id="report_rm">
+ 		<id property="reportNo" column="REPORT_NO"/>
+ 		<result property="reportContent" column="REPORT_CONTENT"/>
+ 		<result property="reportDate" column="REPORT_DT"/>
+ 		<result property="memberNo" column="MEMBER_NO"/>
+ 		<result property="boardNo" column="BOARD_NO"/>
+ 		<result property="replyNo" column="REPLY_NO"/>
+ 	</resultMap>
+
+    <!--<resultMap type="EmpathyStatus" id="empathyStatus_rm">
+    	<id property="empathyStatusCode" column="EMPATHY_STATUS_CD"/>
+
+    	<result property="empathyStatusName" column="EMPATHY_STATUS_NM"/>
+    </resultMap>-->
+
+
+		<!-- 특정 게시판 이미지 조회-->
+
+		<!-- 게시판 이미지 조회-->
+	<select id="selectBoardImageList" resultMap="image_rm">
+		<if test="#{boardNo} != null ">
+			SELECT * FROM IMAGE
+			WHERE BOARD_NO = #{boardNo}
+			ORDER BY IMAGE_LEVEL
+		</if>
+	</select>
+	
+	<select id="selectProfileImageList" resultMap="image_rm">
+		<if test="#{boardNo} != null ">
+			SELECT * FROM IMAGE
+			WHERE MEMBER_NO = #{memberNo}
+			AND IMAGE_LEVEL = 0
+		</if>
+	</select>
+
+	
+	<!-- 게시판 이미지 삽입 -->
+	<insert id="insertImgList" >
+
+   		INSERT INTO IMAGE VALUES (SEQ_IMAGE_NO.NEXTVAL, #{imagePath},
+					 #{imageName},
+					 #{imageOriginal},
+					 #{imageLevel},
+					 DEFAULT,DEFAULT,
+					 #{boardNo})
+   </insert>
+
+	<!-- 자유게시판 글쓴사람 프로필 사진  -->
+	<select id="">
+		SELECT IMAGE_PATH 
+		FROM IMAGE 
+		WHERE MEMBER_NO = (SELECT BOARD_NO
+							FROM BOARD
+							WHERE BOARD_STATUS_CD = 201 
+							AND BOARD_CATEGORY_CD = 101 )
+	</select>
+	
+
+	<!-- 자유게시판 조회-->
+	<select id="selectBoardList" resultMap="board_rm">
+	<![CDATA[
+		SELECT BOARD_NO,BOARD_CONTENT,
+				TO_CHAR(BOARD_CREATE_DT, 'YYYY-MM-DD') "BOARD_CREATE_DT",
+				TO_CHAR(BOARD_MODIFY_DT, 'YYYY-MM-DD')  "BOARD_MODIFY_DT", SCRAP_CHECK_CD,MEMBER_NO,EM_CHECK_CD,ANON_CHECK_CD
+		FROM BOARD
+		WHERE BOARD_STATUS_CD = 201 
+		AND BOARD_CATEGORY_CD = 101
+		ORDER BY BOARD_NO DESC
+		
+		]]>
+	</select>
+	
+	    	
+	<!-- 공감조회 -->
+	<select id="selectEmpathyList" resultType="_int">
+		SELECT COUNT(MEMBER_NO)
+			FROM EMPATHY 
+			WHERE BOARD_NO = #{boardNo} 
+			AND EMPATHY_STATUS_CD = #{empathyStatusCode}
+	</select>
+	
+    <!-- 자유게시판 게시글 -->
+	<select id="selectFreeList" resultMap="board_rm">
+		SELECT * FROM (
+			SELECT ROWNUM AS RNUM, TEMP.* FROM (
+				SELECT BOARD.BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DT,
+					MEMBER.MEMBER_NO, MEMBER_ID, MEMBER_NM, MEMBER_FN,
+					REPLY_CHECK_CD,SCRAP_CHECK_CD,EM_CHECK_CD,
+					e.EMPATHY_ARRAY, e.CNT_ARRAY,
+					IMAGE.IMAGE_NM, IMAGE.IMAGE_PATH,
+					(SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = BOARD.BOARD_NO AND REPLY_STATUS_CD = 301) REPLY_COUNT
+				FROM BOARD
+				LEFT JOIN MEMBER ON MEMBER.MEMBER_NO = BOARD.MEMBER_NO
+				LEFT JOIN IMAGE ON IMAGE.MEMBER_NO = MEMBER.MEMBER_NO
+				LEFT JOIN(
+					SELECT a.BOARD_NO,
+						LISTAGG( a.EMPATHY_STATUS_CD, ',' ) WITHIN GROUP (ORDER BY a.EMPATHY_STATUS_CD) AS EMPATHY_ARRAY,
+						LISTAGG( a.cnt, ',' ) WITHIN GROUP (ORDER BY a.cnt) AS CNT_ARRAY
+					FROM (
+						SELECT BOARD_NO, EMPATHY_STATUS_CD, COUNT(EMPATHY_STATUS_CD) cnt
+						FROM EMPATHY
+						GROUP BY BOARD_NO, EMPATHY_STATUS_CD
+					) a
+					GROUP BY BOARD_NO
+				) e on e.BOARD_NO = BOARD.BOARD_NO
+				WHERE BOARD_CATEGORY_CD = 101
+				AND BOARD_STATUS_CD =201
+				AND MEMBER.STATUS_CD != 1
+				AND (IMAGE.IMAGE_LEVEL = 0 OR IMAGE.IMAGE_LEVEL IS NULL)
+
+				<if test="muteMember != null">
+					AND MEMBER.MEMBER_NO NOT IN (${muteMember})
+				</if>
+		ORDER BY BOARD_CREATE_DT DESC 
+		) TEMP)
+		
+		WHERE RNUM BETWEEN #{first} AND #{last} 
+
+	
+<!--     		SELECT MEMBER.MEMBER_NO, MEMBER_ID, MEMBER_FN,
+			BOARD.BOARD_NO, BOARD_CONTENT, BOARD_CREATE_DT,
+			REPLY_CHECK_CD,SCRAP_CHECK_CD,EM_CHECK_CD,ANON_CHECK_CD,
+			e.EMPATHY_ARRAY, e.CNT_ARRAY,
+			(SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = BOARD.BOARD_NO) REPLY_COUNT
+		FROM BOARD
+		LEFT JOIN MEMBER ON MEMBER.MEMBER_NO = BOARD.MEMBER_NO
+		LEFT JOIN(
+			SELECT
+				a.BOARD_NO,
+				LISTAGG(  a.EMPATHY_STATUS_CD, ',' ) WITHIN GROUP (ORDER BY a.EMPATHY_STATUS_CD) AS EMPATHY_ARRAY,
+				LISTAGG(  a.cnt, ',' ) WITHIN GROUP (ORDER BY a.cnt) AS CNT_ARRAY
+			FROM (
+				SELECT BOARD_NO, EMPATHY_STATUS_CD, COUNT(EMPATHY_STATUS_CD) cnt
+				FROM EMPATHY
+				GROUP BY BOARD_NO, EMPATHY_STATUS_CD
+			) a
+			GROUP BY BOARD_NO
+		) e on e.BOARD_NO = BOARD.BOARD_NO
+		WHERE BOARD_CATEGORY_CD = 101 
+
+		<if test="searchCategory != null">
+			<bind name="val" value="'%' + searchText + '%'"/>
+
+			<choose>
+				<when test="searchCategory == 'id'">
+					AND MEMBER_FN LIKE #{val}
+				</when>
+				<otherwise>
+					AND BOARD_CONTENT LIKE #{val}
+				</otherwise>
+			</choose>
+		</if>
+		ORDER BY BOARD.BOARD_NO DESC-->
+	</select>
+	
+	
+	<!-- freeListCount -->
+   	<select id="countSecretList" resultType="_int">
+		SELECT COUNT(*) MAX_VALUE
+		FROM BOARD
+		WHERE BOARD_CATEGORY_CD = 101 AND BOARD_STATUS_CD = 201
+	</select>
+	
+	
+	<!-- 자유게시판 게시글 작성 -->
+	<insert id="insertFreeboard"  useGeneratedKeys="true" parameterType="Board">
+		
+	    <selectKey order="BEFORE" resultType="_int" keyProperty="boardNo">
+	         SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+	    </selectKey>
+	    
+		INSERT INTO BOARD 
+		VALUES(#{boardNo},DEFAULT, #{boardContent}, DEFAULT, DEFAULT, DEFAULT, 
+				#{replyCheckCode},#{scrapCheckCode},#{boardCategoryCode},#{memberNo},
+				DEFAULT,DEFAULT,#{empathyCheckCode},DEFAULT,DEFAULT)
+	</insert>
+	
+	<!-- 게시글 상세조회 -->
+	<select id="selectBoard" resultMap="board_rm">
+		SELECT BOARD.BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DT,BOARD_MODIFY_DT,
+			MEMBER.MEMBER_NO, MEMBER_ID, MEMBER_NM, MEMBER_FN,
+			REPLY_CHECK_CD,SCRAP_CHECK_CD,EM_CHECK_CD,
+			e.EMPATHY_ARRAY, e.CNT_ARRAY,
+			IMAGE.IMAGE_NM, IMAGE.IMAGE_PATH,
+			(SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = BOARD.BOARD_NO AND REPLY_STATUS_CD = 301) REPLY_COUNT
+		FROM BOARD
+		LEFT JOIN MEMBER ON MEMBER.MEMBER_NO = BOARD.MEMBER_NO
+		LEFT JOIN IMAGE ON IMAGE.MEMBER_NO = MEMBER.MEMBER_NO
+		LEFT JOIN(
+			SELECT a.BOARD_NO,
+				LISTAGG( a.EMPATHY_STATUS_CD, ',' ) WITHIN GROUP (ORDER BY a.EMPATHY_STATUS_CD) AS EMPATHY_ARRAY,
+				LISTAGG( a.cnt, ',' ) WITHIN GROUP (ORDER BY a.cnt) AS CNT_ARRAY
+			FROM (
+				SELECT BOARD_NO, EMPATHY_STATUS_CD, COUNT(EMPATHY_STATUS_CD) cnt
+				FROM EMPATHY
+				GROUP BY BOARD_NO, EMPATHY_STATUS_CD
+			) a
+			GROUP BY BOARD_NO
+		) e on e.BOARD_NO = BOARD.BOARD_NO
+		WHERE BOARD_CATEGORY_CD = 101
+		AND BOARD_STATUS_CD = 201
+    	AND BOARD.BOARD_NO = #{boardNo}
+		AND (IMAGE.IMAGE_LEVEL = 0 OR IMAGE.IMAGE_LEVEL IS NULL)
+	</select>
+	
+	<update id="increaseReadCount">
+		UPDATE BOARD SET 
+		BOARD_READ_COUNT = BOARD_READ_COUNT+1 
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+
+	<!-- 고민상담 게시글 -->
+	<select id="selectWorryList" resultMap="board_rm">
+		SELECT * FROM (
+			SELECT ROWNUM AS RNUM, TEMP.* FROM (
+				SELECT BOARD.BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DT, BOARD_MODIFY_DT,BOARD.WORRY_CATEGORY_CD,
+					MEMBER.MEMBER_NO, MEMBER_ID, MEMBER_NM, MEMBER_FN,
+					w.WORRY_NM WORRY_CATEGORY_NM,
+					e.EMPATHY_ARRAY, e.CNT_ARRAY,
+					IMAGE.IMAGE_NM, IMAGE.IMAGE_PATH,
+					(SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = BOARD.BOARD_NO AND REPLY_STATUS_CD = 301) REPLY_COUNT
+				FROM BOARD
+				LEFT JOIN MEMBER ON MEMBER.MEMBER_NO = BOARD.MEMBER_NO
+				LEFT JOIN WORRY_CATEGORY w ON w.worry_category_cd = BOARD.WORRY_CATEGORY_CD
+				LEFT JOIN IMAGE ON IMAGE.MEMBER_NO = MEMBER.MEMBER_NO
+				LEFT JOIN(
+					SELECT a.BOARD_NO,
+						LISTAGG( a.EMPATHY_STATUS_CD, ',' ) WITHIN GROUP (ORDER BY a.EMPATHY_STATUS_CD) AS EMPATHY_ARRAY,
+						LISTAGG( a.cnt, ',' ) WITHIN GROUP (ORDER BY a.cnt) AS CNT_ARRAY
+					FROM (
+						SELECT BOARD_NO, EMPATHY_STATUS_CD, COUNT(EMPATHY_STATUS_CD) cnt
+						FROM EMPATHY
+						GROUP BY BOARD_NO, EMPATHY_STATUS_CD
+					) a
+					GROUP BY BOARD_NO
+				) e on e.BOARD_NO = BOARD.BOARD_NO
+				WHERE BOARD_CATEGORY_CD = #{boardCategoryCode}
+				AND BOARD_STATUS_CD = 201
+				AND (IMAGE.IMAGE_LEVEL = 0 OR IMAGE.IMAGE_LEVEL IS NULL)
+				AND MEMBER.STATUS_CD != 1
+				
+				<if test="muteMember != null">
+					AND MEMBER.MEMBER_NO NOT IN (${muteMember})
+				</if>
+
+				<if test="worryCategoryCode != null">
+					<if test="worryCategoryCode != 0">
+						AND BOARD.WORRY_CATEGORY_CD = #{worryCategoryCode}
+					</if>
+				</if>
+
+				<if test="searchCategory != null">
+					<bind name="val" value="'%' + searchText + '%'"/>
+
+					<choose>
+						<when test="searchCategory == 'id'">
+							AND MEMBER_FN LIKE #{val}
+						</when>
+						<otherwise>
+							AND BOARD_CONTENT LIKE #{val}
+						</otherwise>
+					</choose>
+				</if>
+
+				ORDER BY BOARD.BOARD_CREATE_DT DESC
+			) TEMP)
+		WHERE RNUM BETWEEN  #{first} AND #{last}
+	</select>
+
+	<!-- 고민상담 게시글 작성 -->
+	<insert id="insertWorryBoard" useGeneratedKeys="true" parameterType="Board">
+
+		<selectKey order="BEFORE" resultType="_int" keyProperty="boardNo">
+			SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+		</selectKey>
+
+		INSERT INTO BOARD
+		VALUES(#{boardNo}, #{boardTitle}, #{boardContent}, DEFAULT, DEFAULT, DEFAULT, #{replyCheckCode},
+			#{scrapCheckCode}, #{boardCategoryCode}, #{memberNo}, DEFAULT, DEFAULT, #{empathyCheckCode}, DEFAULT, #{worryCategoryCode})
+	</insert>
+   
+	<!-- 작성 날짜 역순 / 최신 순 -->
+	<select id="myBoardList" resultMap="board_rm">
+		SELECT * FROM(
+			 SELECT ROWNUM AS RNUM, TEMP.* FROM(
+				   SELECT B.MEMBER_NO, B.BOARD_NO, B.BOARD_TITLE, B.BOARD_CONTENT,
+						  B.BOARD_CREATE_DT,
+						  BOARD_CATEGORY_NM, B.BOARD_READ_COUNT, MEMBER_FN, IMAGE_PATH, IMAGE_NM
+				   FROM BOARD B
+							JOIN MEMBER ON(B.MEMBER_NO = MEMBER.MEMBER_NO)
+							JOIN BOARD_CATEGORY USING (BOARD_CATEGORY_CD)
+							LEFT JOIN IMAGE ON(IMAGE.BOARD_NO = B.BOARD_NO)
+				   WHERE B.MEMBER_NO = #{memberNo} AND B.BOARD_STATUS_CD IN (200, 201)
+				   ORDER BY BOARD_NO DESC
+			   ) TEMP)
+		WHERE RNUM BETWEEN #{first} AND #{last}
+	</select>
+	<select id="countBoardList" resultType="_int">
+		SELECT COUNT(*) MAX_VALUE FROM BOARD
+		WHERE MEMBER_NO = #{memberNo} AND BOARD_STATUS_CD IN (200, 201)
+	</select>
+
+	<!-- 전체 게시글 수 count -->
+	<select id="getBoardListCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD
+		WHERE BOARD_STATUS_CD = 201
+		AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	<!-- 게시글 수정  -->
+	<update id="updateBoard">
+		UPDATE BOARD SET 
+		BOARD_TITLE = #{boardTitle},
+		BOARD_CONTENT = #{boardContent},
+		REPLY_CHECK_CD = #{replyCheckCode},
+		SCRAP_CHECK_CD =#{scrapCheckCode},
+		EM_CHECK_CD= #{empathyCheckCode},
+		<if test="boardCategoryCode == 102 ">
+			WORRY_CATEGORY_CD =#{worryCategoryCode},
+		</if>
+		
+		<if test="boardCategoryCode == 104">
+			ANON_CHECK_CD = #{anonCheckCode},
+		</if>
+		BOARD_MODIFY_DT = SYSDATE
+		WHERE BOARD_NO = #{boardNo} 
+	</update>	
+	<!-- 게시글 삭제  -->
+	<update id="deleteBoard">
+		UPDATE BOARD SET 
+		BOARD_STATUS_CD = 203,
+		BOARD_MODIFY_DT = SYSDATE
+		WHERE BOARD_NO = #{boardNo} 
+	</update>
+
+	<select id="myScrapList" resultMap="scrap_rm">
+		SELECT * FROM(
+			SELECT ROWNUM AS RNUM, TEMP.* FROM(
+				SELECT BOARD.BOARD_NO, BOARD_TITLE, S.ENROLL_DT, BOARD_CATEGORY_NM, MEMBER.MEMBER_FN,
+						S.MEMBER_NO, S.SCRAP_NO, BOARD_READ_COUNT, IMAGE_PATH, IMAGE_NM
+				FROM SCRAP S
+						JOIN BOARD ON (BOARD.BOARD_NO = S.BOARD_NO)
+						JOIN BOARD_CATEGORY USING(BOARD_CATEGORY_CD)
+						JOIN MEMBER ON (MEMBER.MEMBER_NO = S.MEMBER_NO)
+						LEFT JOIN IMAGE ON(IMAGE.BOARD_NO = BOARD.BOARD_NO)
+				WHERE S.MEMBER_NO = #{memberNo}
+					AND BOARD.BOARD_STATUS_CD = 201
+					AND STATUS_CD = 0
+					ORDER BY BOARD_NO DESC
+			) TEMP)
+		WHERE RNUM BETWEEN #{first} AND #{last}
+	</select>
+	<select id="countScrapList" resultType="_int">
+		SELECT COUNT(*) MAX_VALUE FROM SCRAP
+		   JOIN BOARD USING(BOARD_NO)
+		WHERE SCRAP.MEMBER_NO = #{memberNo} AND BOARD.BOARD_STATUS_CD = 201
+	</select>
+
+	<select id="countEmpathyList" resultType="_int">
+		SELECT COUNT(*) MAX_VALUE FROM EMPATHY
+			JOIN BOARD USING(BOARD_NO)
+		WHERE EMPATHY.MEMBER_NO = #{memberNo} AND BOARD.BOARD_STATUS_CD = 201
+	</select>
+
+	<select id="myEmpathyList" resultMap="empathy_rm">
+		SELECT * FROM(
+			SELECT ROWNUM AS RNUM, TEMP.* FROM(
+				SELECT BOARD.BOARD_NO, BOARD_TITLE, EMP.EMP_ENROLL_DT, BOARD_CATEGORY_NM, MEMBER.MEMBER_FN,
+						EMP.MEMBER_NO, BOARD_READ_COUNT, IMAGE_PATH, IMAGE_NM
+				FROM EMPATHY EMP
+					JOIN BOARD ON (BOARD.BOARD_NO = EMP.BOARD_NO)
+					JOIN BOARD_CATEGORY USING(BOARD_CATEGORY_CD)
+					JOIN MEMBER ON (MEMBER.MEMBER_NO = EMP.MEMBER_NO)
+					LEFT JOIN IMAGE ON(IMAGE.BOARD_NO = BOARD.BOARD_NO)
+				WHERE EMP.MEMBER_NO = #{memberNo}
+					AND BOARD.BOARD_STATUS_CD = 201
+					AND STATUS_CD = 0
+				ORDER BY BOARD_NO DESC
+			) TEMP)
+		WHERE RNUM BETWEEN #{first} AND #{last}
+	</select>
+
+	<select id="getMyImage" resultMap="image_rm">
+		SELECT IMAGE_PATH, IMAGE_NM
+		FROM IMAGE
+		WHERE MEMBER_NO = #{memberNo} AND IMAGE_LEVEL = 0
+	</select>
+	
+	<!-- 내찜사 페이징 전체 수 -->
+	<select id="getCounselorListCount" resultType="_int" parameterType="_int">
+			SELECT COUNT(*) FROM PROFESSION_WISH
+			WHERE MEMBER_NO = #{memberNo}
+
+	</select>
+
+	<!-- 내찜사 목록 -->
+	<select id="selectCounselorList" resultMap="board_rm">
+		<![CDATA[
+			SELECT W.PROFESSION_NO, W.MEMBER_NO
+				 , P.PROFESSION_NM
+				 , I.IMAGE_PATH, I.IMAGE_LEVEL, I.IMAGE_NM
+				 , PP.COUNSEL_CATEGORY_NO, PP.COUNSEL_PRICE
+				 , PI.PRO_INTRO
+				 , (SELECT COUNT(*) FROM REVIEW
+					WHERE PROFESSION_NO = W.PROFESSION_NO) AS REVIEW_COUNT
+				 , (SELECT  NVL(ROUND(AVG(REVIEW_STARPOINT),2),0) RS_NVL FROM REVIEW
+					WHERE PROFESSION_NO = W.PROFESSION_NO) AS REVIEW_AVG
+				 , (SELECT MIN(COUNSEL_PRICE) FROM PROFESSION_PRICE
+					WHERE PROFESSION_NO = PP.PROFESSION_NO) AS PRICE_MIN
+			FROM PROFESSION_WISH W
+				LEFT JOIN PROFESSION P ON P.PROFESSION_NO = W.PROFESSION_NO
+				LEFT JOIN IMAGE I ON I.PROFESSION_NO = W.PROFESSION_NO
+				LEFT JOIN PROFESSION_INFORMATION PI ON PI.PROFESSION_NO = W.PROFESSION_NO
+				LEFT JOIN (
+				    SELECT PROFESSION_NO
+						, LISTAGG(COUNSEL_PRICE,',') WITHIN GROUP(ORDER BY PROFESSION_NO) AS COUNSEL_PRICE
+						, LISTAGG(COUNSEL_CATEGORY_NO,',') WITHIN GROUP(ORDER BY PROFESSION_NO) AS COUNSEL_CATEGORY_NO
+					FROM PROFESSION_PRICE
+					GROUP BY PROFESSION_NO
+				) PP ON PP.PROFESSION_NO = W.PROFESSION_NO
+			WHERE W.MEMBER_NO = #{memberNo}
+		]]>
+	</select>
+
+	<delete id="deleteCounselor">
+		DELETE FROM PROFESSION_WISH
+		WHERE PROFESSION_NO = #{professionNo}
+		AND MEMBER_NO = #{memberNo}
+	</delete>
+
+	<select id="selectProfile" resultType="_int">
+		SELECT COUNT(*)
+		FROM IMAGE
+		WHERE MEMBER_NO = #{memberNo} AND IMAGE_LEVEL = 0 AND BOARD_NO IS NULL
+	</select>
+
+	<update id="updateImage">
+		UPDATE IMAGE SET
+			 IMAGE_PATH = #{imagePath}, IMAGE_NM = #{imageName}, IMAGE_ORIGINAL = #{imageOriginal}
+		WHERE MEMBER_NO = #{memberNo} AND BOARD_NO IS NULL AND IMAGE_LEVEL = 0
+	</update>
+	<insert id="insertImage">
+		INSERT INTO IMAGE VALUES(
+			SEQ_IMAGE_NO.NEXTVAL, #{imagePath}, #{imageName}, #{imageOriginal},
+			#{imageLevel}, #{memberNo}, DEFAULT, DEFAULT)
+	</insert>
+
+	<select id="selectWorryBoard" resultMap="board_rm">
+		SELECT BOARD.BOARD_NO, BOARD_TITLE, BOARD_CONTENT, EM_CHECK_CD, REPLY_CHECK_CD,SCRAP_CHECK_CD,
+			TO_CHAR(BOARD_CREATE_DT, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"' ) BOARD_CREATE_DT,
+			TO_CHAR(BOARD_MODIFY_DT, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"' ) BOARD_MODIFY_DT,
+			BOARD.WORRY_CATEGORY_CD, MEMBER.MEMBER_NO, MEMBER_ID, MEMBER_NM, MEMBER_FN,
+			w.WORRY_NM WORRY_CATEGORY_NM,
+			e.EMPATHY_ARRAY, e.CNT_ARRAY,
+			IMAGE.IMAGE_NM, IMAGE.IMAGE_PATH,
+		   (SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = BOARD.BOARD_NO AND REPLY_STATUS_CD = 301) REPLY_COUNT
+		FROM BOARD
+		LEFT JOIN MEMBER ON MEMBER.MEMBER_NO = BOARD.MEMBER_NO
+		LEFT JOIN IMAGE ON IMAGE.MEMBER_NO = MEMBER.MEMBER_NO
+		LEFT JOIN WORRY_CATEGORY w ON w.WORRY_CATEGORY_CD = BOARD.WORRY_CATEGORY_CD
+		LEFT JOIN(
+			SELECT
+				a.BOARD_NO,
+				LISTAGG(  a.EMPATHY_STATUS_CD, ',' ) WITHIN GROUP (ORDER BY a.EMPATHY_STATUS_CD) AS EMPATHY_ARRAY,
+				LISTAGG(  a.cnt, ',' ) WITHIN GROUP (ORDER BY a.cnt) AS CNT_ARRAY
+			FROM (
+				SELECT BOARD_NO, EMPATHY_STATUS_CD, COUNT(EMPATHY_STATUS_CD) cnt
+				FROM EMPATHY
+				GROUP BY BOARD_NO, EMPATHY_STATUS_CD
+			) a
+			GROUP BY BOARD_NO
+		) e on e.BOARD_NO = BOARD.BOARD_NO
+		WHERE BOARD_CATEGORY_CD = #{boardCategoryCode}
+		AND BOARD.BOARD_NO = #{boardNo}
+		AND BOARD.BOARD_STATUS_CD = 201
+		AND (IMAGE.IMAGE_LEVEL = 0 OR IMAGE.IMAGE_LEVEL IS NULL)
+	</select>
+	
+
+
+	<insert id="memberBlock">
+		INSERT INTO MUTE VALUES(#{memberNo}, #{loginMember},)
+	</insert>
+
+	<!-- 스크랩 여부 조회 -->
+	<select id="selectScrap" resultMap="scrap_rm">
+		SELECT SCRAP_NO FROM SCRAP WHERE BOARD_NO = #{boardNo} AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	<!-- 스크랩하기 -->
+	<insert id="insertScrap">
+		INSERT INTO SCRAP VALUES(SEQ_SCRAP_NO.NEXTVAL,#{memberNo} ,#{boardNo}, DEFAULT)
+	</insert>
+	
+	<delete id="deleteScrap">
+		DELETE FROM SCRAP WHERE BOARD_NO = #{boardNo} AND MEMBER_NO = #{memberNo}
+	</delete>
+
+	<!-- 관리자 고민게시판 리스트 가지고오기 -->
+	<select id="proWorryListSelect" resultMap="board_rm">
+		SELECT BOARD_NO, BOARD_TITLE, 
+		     TO_CHAR(BOARD_CREATE_DT, 'YYYY"-"MM"-"DD' ) BOARD_CREATE_DT,
+		     WORRY_NM
+		FROM BOARD B
+		JOIN WORRY_CATEGORY WC ON (WC.WORRY_CATEGORY_CD  = B.WORRY_CATEGORY_CD)
+		WHERE BOARD_CATEGORY_CD = 102
+		AND B.WORRY_CATEGORY_CD IN (${counselCategoryCode})
+	</select>
+	
+	<!-- 상담사 예약페이지 상담사 사진,이름 가지고 오기 -->
+	<select id="proImageNameSelect" resultMap="image_rm">
+		SELECT IMAGE_PATH, IMAGE_NM, PROFESSION_NM
+		FROM IMAGE
+		JOIN PROFESSION USING (PROFESSION_NO)
+		WHERE PROFESSION_NO = #{professionNo}
+		AND STATUS_CD = 4
+		AND IMAGE_LEVEL = 1
+	</select>
+	
+	<select id="selectMuteMember" resultType="string">
+ 		 SELECT 
+          LISTAGG(  MUTE_NO, ',' ) WITHIN GROUP (ORDER BY MUTE_NO) AS MUTE_NO 
+        FROM(
+          SELECT MUTE_NO
+          FROM MUTE
+          WHERE MEMBER_NO = #{memberNo}
+        ) 
+	</select>
+
+	<select id="myLetterList" resultMap="letter_rm">
+		SELECT L.LETTER_NO, L.LETTER_CONTENT, TO_CHAR(L.LETTER_DT, 'YYYY-MM-DD') AS LETTER_DT
+			 , L.LETTER_TYPE, L.LETTER_STATUS_CD, L.MEMBER_NO, L.PROFESSION_NO
+			 , P.PROFESSION_NM
+		FROM LETTER L
+			JOIN PROFESSION P ON (P.PROFESSION_NO = L.PROFESSION_NO)
+		WHERE L.MEMBER_NO = #{memberNo}
+		ORDER BY L.LETTER_NO DESC
+	</select>
+
+	<select id="selectMainBoardList" resultMap="board_rm">
+		<![CDATA[
+			SELECT B.*
+				, BC.BOARD_CATEGORY_NM
+			FROM BOARD B
+			LEFT JOIN BOARD_CATEGORY BC ON BC.BOARD_CATEGORY_CD = B.BOARD_CATEGORY_CD
+			WHERE B.BOARD_STATUS_CD = 201
+			AND ROWNUM >= 1 AND ROWNUM <= 3ORDER BY BOARD_NO DESC
+		]]>
+	</select>
+	
+	<!-- 신고 조회 -->
+	<select id="selectReport" resultMap="report_rm">
+		SELECT REPORT_NO FROM REPORT 
+		WHERE MEMBER_NO = ${memberNo}
+		AND (BOARD_NO = ${boardNo} 
+			OR REPLY_NO = ${replyNo})
+	</select>
+	
+	<!-- 신고 입력 -->
+	<insert id="insertReport">
+		INSERT INTO REPORT 
+		VALUES(SEQ_REPORT_NO.NEXTVAL,'${reportContent}',DEFAULT,${memberNo},${boardNo},DEFAULT)
+	</insert>
+
+</mapper>

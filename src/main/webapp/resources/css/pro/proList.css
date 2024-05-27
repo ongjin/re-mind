@@ -1,0 +1,471 @@
+.main_wrap{
+    width: 100%;
+    /* height: 3000px; */
+}
+
+.main_content2{
+    max-width:1200px !important;
+    margin: 0 auto !important
+}
+/* 
+main{
+    width: 80%;
+    max-width:1200px;
+    margin:auto;
+} */
+
+
+/* 상담사 이름 검색 */
+#pro_search_wrap{
+    margin-top:50px;
+}
+
+#pro_search_div{
+    width:250px;
+    height: 45px;
+    border: 1px solid #ededed;
+}
+#pro_searchInput{
+    border:none;
+    height: 35px;
+    margin:5px 0 0 5px;
+    float: left;
+
+}
+#pro_search_div > div{
+    border: none;
+    background-color: #fff;
+    margin-top: 10px;
+}
+input:focus {outline:none;}
+
+
+/* 상담사 카테고리 전체 */
+#pro_category_warp{
+    max-width:1200px;
+    height: 410px;
+    margin:10px 0 50px 0;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    padding: 20px 60px;
+}
+
+/* 상담사 카테고리 table */
+#pro_search{
+    width:100%;
+}
+
+.pro_tr:first-child th{
+    line-height: 170px;
+}
+
+.pro_tr{
+    height: 100px;
+    border-bottom: 1px dashed #ddd;
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.pro_tr > th{
+    width:120px;
+    line-height: 100px;
+
+}
+.pro_tr p{
+    font-weight: 500;
+}
+
+.pro_tr > td{
+    vertical-align: middle;
+    width:300px;
+}
+
+.pro_tr span{
+    font-size: 13px;
+    margin-bottom: 10px;
+    color:#6b6b6b;
+    display: inline-block;
+}
+
+.pro_tr:last-child{
+    border:none;
+}
+/* 상담사 카테고리 table 끝 */
+
+/* 나의 고민 키워드 버튼 */
+
+.cate_btn{
+    padding: 0 15px;
+    height: 30px;
+    border:1px solid #ddd;
+    border-radius: 50px;
+    background-color: #fff;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+/* .mBtn{
+    display: inline-block;
+    background: none;
+    border: 2px solid #ddd;
+    color: #ddd;
+    border-radius: 50px;
+    padding: 0px 20px;
+    text-align: center;
+    line-height:40px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.mBtn_ck{
+    height:40px;
+    border:2px solid #a59999;
+    border-radius: 50px;
+    padding:0 20px;
+    background:#a59999;
+    color:#fff;
+} */
+
+/* 나의 고민 키워드 버튼(눌렀을때) */
+.cate_btn_click{
+    background-color: #a59999;
+    border:1px solid #a59999;
+    color:#fff;
+}
+
+/* 상담유형 radio */
+.pro_radio > li{
+    float: left;
+    margin-right: 30px;
+        display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pro_radio label{
+    vertical-align: middle;
+}
+
+
+
+/* 상담사 리스트 목록 */
+
+.pro{
+    max-width:1200px;
+    height: 250px;
+    border:1px solid #ddd;
+    /* transition: 0.5s; */
+    margin-bottom: 20px;
+}
+
+.pro:hover{
+    border:1px solid #a59999;
+}
+
+/* 상담사 목록 이미지 */
+.pro_profile{
+    /*width:30%;*/
+    /* height:250px; */
+    padding: 25px 50px;
+    position: relative;
+    display: inline-block;
+}
+.pro_best{
+    position: absolute;
+}
+.profile{
+    width:200px;
+    height:200px;
+    border-radius: 100px;
+}
+/* ----------------------------------- */
+/* 전문가 설명랩 */
+.pro_intro_wrap{
+    width:36%;
+    /* margin-top:67px; */
+    display: inline-block;
+    vertical-align: top;
+    margin-top:70px;
+
+}
+
+/* 전문가 이름 */
+
+.pro_name h1{
+    font-size: 40px;
+    font-weight: 600;
+    margin-right: 10px;
+    margin-bottom: 20px;
+
+}
+
+/* 전문가 별점 */
+.pro_score_wrap{
+    margin-bottom:25px;
+}
+
+.pro_score_wrap span{
+    font-size: 13px;
+    color: #a59999;
+    font-weight: 500;
+    vertical-align: top;
+}
+
+.pro_score li{
+    float: left;
+    margin-right: 3px;
+}
+
+/* 전문가 내용 */
+.pro_intro{
+    clear: both;
+    font-size: 17px;
+}
+.pro_intro p{
+    margin-top:10px;
+    height:18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-height: 21%;
+}
+
+/* --------------------------------- */
+
+/* 전문가 상담가격 */
+
+.pro_price_wrap{
+    
+    /* height: 250px; */
+    /*padding-left:50px;*/
+    /* padding-top:20px; */
+    display: inline-block;
+    vertical-align: top;
+    margin-top:52px;
+    
+}
+.pro_price_wrap img{
+    margin-left:110px;
+    margin-bottom: 15px;
+}
+
+.pro_price_wrap p{
+    font-size: 25px;
+    font-family: 'Poppins';
+    font-weight: 500;
+    line-height: 40px;
+    margin-left: 10px;
+    
+}
+
+.pro_price_wrap span{
+    font-size: 20px;
+}
+
+/* 모바일 숨기기 */
+#mobile_pro_category_warp{
+    display: none;
+}
+
+/* 모바일 */
+@media screen and (max-width: 1280px) {
+    body{
+        position: relative;
+    }
+    /* 웹 숨기기 */
+
+    /* 웹 카테고리*/
+    #pro_category_warp{
+        display: none;
+    }
+    /* 웹 상담사 검색창 */
+    #pro_search_wrap{
+        display: none;
+    }
+
+    /* 전문가 카테고리 */
+    #mobile_pro_category_warp{
+        display: block;
+        padding: 0 10px;
+    }
+
+    /* 전문가 카테고리 이미지 */
+    .mobile_category_img{
+        margin:3px 0;
+    }
+
+    /* 전문가 카테고리 버튼 */
+    #mobile_category_btn{
+        width:100%;
+        height: 60px;
+        border: none;
+        font-size:17px;
+        font-weight: bold;
+        background-color: #fff;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    #mobile_category_btn > p {
+        margin-left: 5px;
+        margin-top: 3px;
+    }
+    
+    /* 카테고리 div */
+    #mobile_pro_category{
+        width:100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left: 0;
+        background-color: #fff;
+        z-index: 9999;
+        display: none;
+        padding:0 15px;
+    }
+
+    /* 카테고리 필터 제목 */
+    #mobile_pro_category_title{
+        position: relative;
+        height: 60px;
+    }
+    #mobile_pro_category_title > h2{
+        width: 100%;
+        line-height: 60px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    #category_cancel_btn{
+        position: absolute;
+        top:20px;
+        right: 0;
+    }
+
+    .pro_category_title{
+        font-size: 16px;
+        font-weight: bold;
+        margin:25px 0 10px 0;
+    }
+
+    /* 나의 고민 키워드 */
+    #mobile_pro_category_keyword > p{
+        font-size: 13px;
+
+
+    }
+
+    /* 고민키워드 버튼 */
+    .cate_btn_style{
+        padding: 0 20px;
+        height: 45px;
+        border:2px solid #ddd;
+        border-radius: 50px;
+        background-color: #fff;
+        cursor: pointer;
+        margin-bottom: 5px;
+        font-size: 15px;
+        font-weight: 500;
+        color:#ddd;
+    }
+    
+    /* 나의 고민 키워드 버튼(눌렀을때) */
+    .mobile_cate_btn{
+        display: inline-block;
+        background: none;
+        border: 2px solid #ddd;
+        color: #ddd;
+        border-radius: 50px;
+        padding: 0px 20px;
+        text-align: center;
+        line-height:40px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-bottom: 5px;
+    }
+    
+    .mobile_cate_btn_click{
+        background-color: #a59999;
+        border:2px solid #a59999;
+        color:#fff;
+    }
+
+    .test22 input[type="radio"]{
+        display:none;
+    }
+    
+    .test22 input[type="radio"] + span{
+        display:inline-block;
+        background:none;
+        border:2px solid #ddd;
+        color:#ddd;  
+        border-radius: 50px;
+        padding:0px 20px;
+        text-align:center;
+        line-height:40px;
+        font-weight:500;
+        cursor:pointer;
+        margin-bottom: 5px;
+    }
+    
+    .test22 input[type="radio"]:checked + span{
+        border:2px solid #a59999;
+        background:#a59999;
+        color:#fff;
+    }
+
+    .moblie_pro_radio{
+        height: 44px;
+    }
+
+    .moblie_pro_radio > li{
+        float: left;
+        margin-right: 3px;
+    }
+
+    #pro_list{
+        padding: 0 10px;
+    }
+    
+    .pro{
+        max-width: 1200px;
+        height:570px;
+        padding:30px 40px;
+    }
+
+    .pro_name h1{
+        font-size: 30px;
+    }
+
+    .pro_profile,.pro_intro_wrap,.pro_price_wrap{
+        display: block;
+        width:100%;
+        /* margin-bottom:20px; */
+
+    }
+    .pro_profile{
+        padding: 0;
+        text-align: center;
+    }
+
+    .pro_intro_wrap{
+        margin:30px 0;
+    }
+
+    .pro_price_wrap{
+        padding: 0 ;
+        margin: 0;
+    }
+    .pro_price_wrap img{
+        margin-left: 0;
+    }
+    .pro_score_wrap{
+        margin-bottom: 9px;
+    }
+    
+}
+
+.testdiv{overflow-x:hidden;position:absolute;top:0;left:0;}
+.starpoint_box2{position: relative;float: left;}

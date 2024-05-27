@@ -1,0 +1,70 @@
+
+.wish-page{font-weight: 700; font-size: 20px; margin: 0 0 40px 0px;}
+.main_content{padding:53px 0 0 61px;}
+
+
+td > img{
+    border-radius: 100%;
+    width: 6em;
+    height: 6em;
+}
+table{width: 100%; margin-top: 20px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;}
+table tr:not(:first-of-type){display: flex; }
+table tr{display: flex; padding:15px; align-items: center; border-bottom: 1px solid #ededed;}
+
+tr > td:first-of-type{min-width: 120px; width: 120px;}
+tr > td:nth-of-type(2){width: 70%; display: grid;}
+
+
+.pagination {
+    display: inline-flex;
+    padding-left: 0;
+    list-style: none;
+    /* padding-right: 0; */
+    margin: 40px auto;
+    float: right;
+}
+
+.pagination li {
+    margin: 0 2px;
+}
+
+.bold14px{font-weight: bold; font-size: 15px; margin-bottom: 10px;}
+.bold12ccc{font-weight: bold; font-size: 13px; color: #ccc;}
+.pro-content{font-weight: 500; font-size: 13px;color:#ccc; min-width: 50%; margin-bottom: 10px;}
+
+.lovewish{cursor: pointer; width: 2.5em; height: 2.5em;}
+
+@media screen and (max-width: 768px)  {
+    .main_content{padding: 0; margin-left: 10px; margin-right: 10px}
+    .wish-page{margin-left: 10px; margin-bottom: 30px;}
+    .footer_wrap{display: none;}
+    .profile{margin: 0 10px 0 10px;}
+
+
+    .main_content td{text-align: start;}
+
+    .pagination {
+        display: inline-flex;
+        padding-left: 0;
+        list-style: none;
+        /* padding-right: 0; */
+        margin: 40px auto;
+        /* float: right; */
+        width: 100%;
+    }
+
+    .pagination li {
+        margin: 0;
+    }
+
+
+}
+
+/*별점*/
+
+  .starpoint_box{position:relative;background:url(../../images/my/star2.png) 0 0 no-repeat;font-size:0;width:100px;}
+.starpoint_box .starpoint_bg{display:block;position:absolute;top:0;left:0;height:18px;background:url(../../images/my/star2.png) 0 -20px no-repeat; pointer-events:none;}
+.starpoint_box .label_star{display:inline-block;width:10px;height:18px;box-sizing:border-box;}
+.starpoint_box .star_radio{opacity:0;width:0;height:0;position:absolute;}
+.blind{position:absolute;clip:rect(0 0 0 0);margin:-1px;width:1px;height: 1px;overflow:hidden;}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chatMapper">
+    <resultMap id="chatMessage_rm" type="ChatMessage">
+        <id property="chatNo" column="CHAT_NO"/>
+
+        <result property="message" column="MESSAGE"/>
+        <result property="createDate" column="CREATE_DT"/>
+        <result property="professionNo" column="PROFESSION_NO"/>
+        <result property="memberNo" column="MEMBER_NO"/>
+        <result property="chattingNo" column="CHATTING_NO"/>
+        <result property="professionName" column="PROFESSION_NM"/>
+    </resultMap>
+
+    <select id="existsChat"  resultType="_int">
+        SELECT NVL(MAX(CHATTING_NO), 0)
+        FROM CHATTING
+        WHERE RESERVATION_NO = #{reservationNo}
+        AND MEMBER_NO = #{memberNo}
+        AND CHATTING_STATUS_CD = 1
+    </select>
+
+    <select id="selectChatMessage" resultMap="chatMessage_rm">
+        SELECT MESSAGE,
+            TO_CHAR(CREATE_DT, 'AM', 'nls_date_language=korean') || ' ' || TO_CHAR(CREATE_DT, 'HH:MI') CREATE_DT,
+            MEMBER_NO, PROFESSION_NO, PROFESSION_NM
+        FROM CHATTING_MESSAGE
+        LEFT JOIN PROFESSION USING(PROFESSION_NO)
+        WHERE CHATTING_NO = #{chattingNo}
+        ORDER BY CHAT_NO
+    </select>
+
+    <insert id="insertMessage">
+        INSERT INTO CHATTING_MESSAGE VALUES
+            (SEQ_CM_NO.NEXTVAL, #{message}, TO_DATE(#{createDate}, 'YYYY-MM-DD HH24:MI:SS'),
+            <choose>
+                <when test="professionNo != 0">
+                    #{professionNo},
+                </when>
+                <otherwise>
+                    DEFAULT,
+                </otherwise>
+            </choose>
+            <choose>
+                <when test="memberNo != 0">
+                    #{memberNo},
+                </when>
+                <otherwise>
+                    DEFAULT,
+                </otherwise>
+            </choose>
+             #{chattingNo}
+             )
+    </insert>
+</mapper>

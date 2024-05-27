@@ -1,0 +1,130 @@
+@media screen and (min-width: 279px) and (max-width: 768px){
+    .main_wrap{
+        width: 100%;
+        padding: 30px 30px 0 30px;
+        height: 100%;
+        display: grid;
+    }
+        
+    .mb_selftest_top{
+        border: 1px solid #A59999;
+        height: 300px;
+        border-radius: 10%;
+        width: 100%;
+    }
+        
+    .mb_selftest_q{
+        border-bottom: 1px solid #A59999;
+        height: 25%;
+        text-align: start;
+        display: flex;
+        align-items: center;
+        padding: 0px 20px;
+    }
+        
+    .mb_selftest_q > span:first-child{
+        font-weight: bolder;
+        font-size: 2em;
+        margin-right: 10px;
+    }
+        
+    .mb_selftest_q > span:nth-child(3){
+        margin-left: 10px;
+        color: rgb(165 153 153);
+        font-weight: bold;
+        font-size: 1em;
+    }
+        
+    .mb_selftest_q > span:nth-child(2){
+        border-left: 1px solid #A59999;
+        font-size: 2em;
+        height: 20px;
+    }
+
+    .mb_selftest_q_content{
+        background-color: #A59999;
+        color: #fff;
+        font-weight: 500;
+        font-size: 1.2em;
+        height: 75%;
+        border-radius: 0 0 10% 10%;
+        padding: 3vh 1.8vh;
+        line-height: 130%;
+    }
+
+    .mb_selftest_bottom{
+        border: 1px solid #A59999;
+        height: 300px;
+        border-radius: 10%;
+        width: 100%;
+        margin-top: 5vh;
+    }
+
+    .mb_selftest_a{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        margin: 4vh 0;
+        flex-wrap: wrap; /* 상위 요소를 넘어갈 시 줄바꿈 */
+        align-items: center;
+    }
+
+    .selfTest_result{
+        border: 1px solid #A59999;
+        border-radius: 50px;
+        width: 40%;
+        height: 50px;
+        text-align: center;
+        line-height: 48px;
+        color: rgb(165 153 153);
+        font-size: 0.8em;
+        font-weight: bolder;
+        margin-bottom: 2vh;
+    }
+
+    .selfTest_btn{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    .selfTest_prev_btn{
+        /* visibility: hidden;  */
+    }
+    
+    .selfTest_prev_btn,
+    .selfTest_next_btn{
+        border: 1px solid rgb(165 153 153);
+        width: 6em;
+        height: 50px;
+        background: transparent;
+        color: rgb(165 153 153);
+        font-size: 6vw;
+        font-weight: bold;
+        border-radius: 10px;
+    }
+
+}
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

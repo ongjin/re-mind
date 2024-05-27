@@ -1,0 +1,114 @@
+
+/* --------------------------- modal --------------------------- */
+.modal{z-index: 5000; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); position: fixed; display:none;}
+.popup_wrap{position:absolute; top:0; bottom:0; left:0; right:0; display:flex; align-items:center; justify-content: center; display:-webkit-flex; -webkit-align-item: center; -webkit-justify-content: center;}
+.layer_popup{z-index: 5100; background:#fff;  width:100%; max-width:550px; border-radius:10px; overflow:hidden; position:fixed;}
+
+/* login(s) */
+.top_title_wrap {text-align: center; margin:20px auto 0;}
+.top_title_wrap > .title{ font-size:25px; font-weight:bold; height:70px; line-height:68px;}
+.login_box {padding: 15px 150px 15px 150px;}
+.login_box .login_method a{display: block; background: #a59999; padding: 18px; border-radius: 25px; font-weight: bold; color: #ffffff; text-align: center; font-size: 15px; margin-bottom: 20px;}
+.sign_up_wrap {display: flex; justify-content: space-evenly; margin:40px auto 20px;}
+/* login(e) */
+/* email login(s) */
+.email_login_box{padding:40px;}
+.email_login_box > .input_wrap > .input_div > div{margin:10px 0;}
+.email_login_box > .input_wrap > .input_div > .login_input{border:none; border-bottom:1px solid #000; width:100%; height:24px;}
+.submit_area{margin:40px; text-align: center;}
+.submit_area > button{height: 50px; width: 70%; font-size: 16px; font-weight: 500; border: none; background: #a59999; color : #ffffff; border-radius: 10px; cursor: pointer;}
+/* email login(e) */
+
+/* sign up(s) */
+.signup_box{padding:5px 50px 15px 40px;}
+.signup_box > .input_wrap{display:inline-block; width:100%;}
+.signup_box > .input_wrap > .input_area{display:inline-block; width:47%;}
+.check { float: right; font-size : 13px; padding-top: 2px; color:red;}
+.short { width: 64% !important}
+.shortBtn { width: 34%; font-size: 14px; background-color: #a59999; border: 0; color: #F1F0F0; border-radius: 13px; cursor: pointer; padding : 3px 7px 3px 7px; margin-bottom : 5px;}
+.phone { width: 60px !important; margin-left : 5px;}
+.signup_box > .input_wrap > .input_area select{ width:60px;  }
+
+
+@media screen and (max-width: 768px) {
+    .signup_box{padding:0 40px;}
+    .signup_box > .input_wrap > .input_area{width:100%;}
+    
+    .login_box{ padding:15px 40px 15px 40px;}
+}
+.signup_box > .input_wrap > .input_area.left_area{float:left;}
+.signup_box > .input_wrap > .input_area.right_area{float:right;}
+
+.signup_box > .input_wrap > .input_area > .input_div > div{margin:10px 0;}
+.signup_box > .input_wrap > .input_area > .input_div > .login_input{border:none; border-bottom:1px solid #a59999; width:100%; height:24px;}
+/* sign up(e) */
+
+/* close btn(s) */
+.close_popup{position:absolute; right:0; margin:15px; cursor: pointer;}
+/* close btn(e) */
+
+
+/* 상담사 후기 모달창 */
+
+#letter_area_wrap{
+    padding: 20px;
+}
+
+#starTitle{
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  margin:10px 0;
+  
+}
+
+#proPostText{
+  width:100%;
+  height: 200px;
+}
+
+#proReview{
+  width:100%;
+  height: 60px;
+  margin-top:20px;
+  border: none;
+  background-color: #a59999;
+  color:#fff;
+  font-size: 17px;
+  font-weight: bold;
+
+}
+
+#reviewCount{
+  font-size: 17px;
+  font-weight: bold;
+}
+
+
+.starpoint_wrap{display:inline-block;}
+.starpoint_box{position:relative;background:url(../images/my/star2.png) 0 0 no-repeat;font-size:0;}
+.starpoint_box .starpoint_bg{display:block;position:absolute;top:0;left:0;height:18px;background:url(../images/my/star2.png) 0 -20px no-repeat;pointer-events:none;}
+.starpoint_box .label_star{display:inline-block;width:10px;height:18px;box-sizing:border-box;}
+.starpoint_box .star_radio{opacity:0;width:0;height:0;position:absolute;}
+/* .starpoint_box .star_radio:nth-of-type(1):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(1):checked ~ .starpoint_bg{width:10%;}
+.starpoint_box .star_radio:nth-of-type(2):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(2):checked ~ .starpoint_bg{width:20%;}
+.starpoint_box .star_radio:nth-of-type(3):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(3):checked ~ .starpoint_bg{width:30%;}
+.starpoint_box .star_radio:nth-of-type(4):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(4):checked ~ .starpoint_bg{width:40%;}
+.starpoint_box .star_radio:nth-of-type(5):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(5):checked ~ .starpoint_bg{width:50%;}
+.starpoint_box .star_radio:nth-of-type(6):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(6):checked ~ .starpoint_bg{width:60%;}
+.starpoint_box .star_radio:nth-of-type(7):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(7):checked ~ .starpoint_bg{width:70%;}
+.starpoint_box .star_radio:nth-of-type(8):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(8):checked ~ .starpoint_bg{width:80%;}
+.starpoint_box .star_radio:nth-of-type(9):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(9):checked ~ .starpoint_bg{width:90%;}
+.starpoint_box .star_radio:nth-of-type(10):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(10):checked ~ .starpoint_bg{width:100%;} */
+
+.blind{position:absolute;clip:rect(0 0 0 0);margin:-1px;width:1px;height: 1px;overflow:hidden;}

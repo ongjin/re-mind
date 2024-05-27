@@ -1,0 +1,139 @@
+.main_content{padding: 60px 0 0 30px;}
+.board-page{font-weight: 700; font-size: 20px; display: inline-block; margin-bottom: 20px;}
+.div-btn-info{margin-top: 10px; display: flex; height: 35px; line-height: 22px; 
+    margin-bottom: 20px;
+}
+/* .div-btn:hover{border-bottom: 2px solid black; } */
+.div-btn{
+    width: 25% !important; cursor: pointer;
+    /* display: inline-block;  */
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+    color: #A59999;
+}
+.db-line{
+    position: absolute;
+    background-color: #A59999;
+    top: 240px;
+    left: 0;
+    height: 5px;
+    /*transition: 0.3s;*/
+}
+
+/*.pagination {*/
+/*    display: inline-flex;*/
+/*    padding-left: 0;*/
+/*    list-style: none;*/
+/*    !* padding-right: 0; *!*/
+/*    margin: 40px auto;*/
+/*    float: right;*/
+/*}*/
+
+/*.pagination li {*/
+/*    margin: 0 2px;*/
+/*}*/
+
+#pagination{display: flex; place-content: center; margin: 30px 0;}
+#pagination *{border: 1px solid #ccc; height: 30px; line-height: 28px; width: 40px; text-align: center;}
+#pagination div:hover, #pagination span:hover{cursor: pointer; background-color: #ccc;}
+
+
+/* .div-btn:nth-child(1){border-bottom: 2px solid black;} */
+table{width: 100%; table-layout: fixed; margin-top: 10px;}
+thead > tr > th:nth-child(1){padding-bottom: 10px}
+thead > tr > th:nth-child(1), td:nth-child(1){width: 15%;}
+thead > tr > th:nth-child(2), td:nth-child(2){width: 40%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+thead > tr > th:nth-child(3), td:nth-child(3){width: 20%;}
+thead > tr > th:nth-child(4), td:nth-child(4){width: 25%;}
+.board-view > td:not(td:nth-child(2)){text-align: center; padding: 15px;}
+table tr{text-align: center;}
+
+@media screen and (max-width: 768px) and (min-width: 0px) {
+
+
+    /*.pagination {*/
+    /*    display: inline-flex;*/
+    /*    padding-left: 0;*/
+    /*    list-style: none;*/
+    /*    !* padding-right: 0; *!*/
+    /*    margin: 40px auto;*/
+    /*    !* float: right; *!*/
+    /*    width: 100%;*/
+    /*}*/
+
+    /*.pagination li {*/
+    /*    margin: 0;*/
+    /*}*/
+
+    .main_content{padding: 0;}
+    .footer_wrap{display: none;}
+
+    .div-btn{font-size: 14px;}
+
+    /* 지우고 새로만들기 */
+    .board-page{margin: 10px 0 20px 10px;}
+    table{display: none;}
+
+    .board-list{padding: 10px;}
+    /* .div-img, .div-img > *{width: 20%;} */
+    .board-list{display: flex;}
+    .div-img > *{width: 5em; height: 5em;}
+    .board-content{display: grid; justify-items: start;
+    align-content: space-evenly;}
+    .board-content{min-width: 50%; width: 100%;}
+
+    .board-content > *:first-of-type{
+        min-width: 50%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        font-weight: bold;
+    }
+
+    .board-content > *:nth-of-type(2){color: #ccc; font-size: 13px;}
+    .board-content > *:last-of-type{font-weight: 700; font-size: 15px; color: #E5D4C5;}
+
+    .div-btn{font-size: 13px;}
+
+    .opImg > img{width: 1.3em; height: 1.3em;}
+    .opImg{position: relative;}
+    .opImg > div{
+        font-size: 15px;
+        font-weight: 700;
+        padding: 2px;
+        min-width: 6em;
+        border: 0px solid #ccc;
+        cursor: pointer;
+        height: 35px;
+        line-height: 31px;
+        text-align: center;
+        border-radius: 10px;
+        background-color:#E5D4C5;
+        color: white;
+    }
+    .opImg > div:nth-of-type(1){position: absolute; top: 0px; right: 30px;}
+    .opImg > div:nth-of-type(2){position: absolute; top: 45px; right: 30px;}
+    .opImg > div{visibility: hidden;}
+
+    .board-content{text-align: start}
+
+    .side_menu{display: inline-block;}
+    .side_menu > ul{display: flex;}
+    .side_menu > ul > li{width: 25%; /* text-align: start; */}
+    .side_menu > ul > hr{display: none;}
+
+}@media screen and (max-width: 950px) and (min-width: 768px)  {
+
+    table{font-size: 14px;}
+    .div-btn{font-size: 14px;}
+	.div-btn-info {margin-top: 20px;}
+    .board-info{display: none;}
+}@media screen and (min-width: 950px) {
+
+    table{font-size: 15px;}
+    .div-btn{font-size: 15px;}
+	.div-btn-info {margin-top: 20px;}
+    .board-info{display: none;}
+}

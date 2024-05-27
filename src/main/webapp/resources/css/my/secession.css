@@ -1,0 +1,40 @@
+.main_content{padding: 60px 0 0 29px;}
+.secession-page{font-weight: 700; font-size: 20px; display: inline-block; margin-bottom: 30px;}
+
+.title{display: block; text-align: center; font-size: 20px; font-weight: bold; margin-bottom: 20px; color:#4e3e3a}
+.content{font-size: 14px;  color:#A59999;line-height: 20px;}
+
+.ok-pass{margin-top: 50px; width: 100%; }
+.ok-pass > *{text-align: center; margin-bottom: 10px;}
+.secession-body{background-color: #FCF7F3;
+    padding: 30px; border-radius: 15px}
+
+input{outline: none; border: 0px}
+.inputPass{border-bottom: 2px solid #ccc; width: 200px;  height: 30px; display: inline-block;}
+.passtext{display: inline-block; font-size: 15px; margin-right: 10px}
+.csdiv{text-align: center; margin-top: 20px;}
+.password{display: flex;
+    align-items: flex-end;
+    justify-content: center;}
+#cancel, #update{margin-top:20px; border: none; width: 20%; padding: 5px; border-radius: 5px; color: white; cursor: pointer;}
+#cancel{background-color: #A59999;}
+#update{background-color:#E5D4C5;}
+#cancel:hover, #update:hover{cursor: pointer;}
+
+
+
+@media screen and (max-width: 768px)  {
+	.main_content{    padding: 20px;}
+	
+    .title{font-size: 15px}
+    .csdiv{display: flex; margin-right: 20px;justify-content: space-evenly;}
+    #update, #cancel{margin-top:20px; width: 45%; height: 40px;}
+    .secession-page, hr{margin-right: 20px;}
+    .secession-body{height: 200px; overflow: auto; padding: 25px}
+
+
+    .side_menu{display: inline-block;}
+    .side_menu > ul{display: flex;  }
+    .side_menu > ul > li{width: 25%; /* text-align: start; */}
+    .side_menu > ul > hr{display: none;}
+}

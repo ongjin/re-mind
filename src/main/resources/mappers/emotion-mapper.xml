@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="emotionMapper">
+	<resultMap id="emotionCategoryRm" type="EmotionCategory">
+		<id property="emotionCategoryCode" column="EMOTION_CATEGORY_CD"/>
+		<result property="emotionCategoryName" column="EMOTION_CATEGORY_NM"/>
+	</resultMap>
+
+	<resultMap id="emotionDiaryRm" type="EmotionDiary">
+		<id property="emotionNo" column="EMOTION_NO" />
+
+		<result property="emotionArray" column="EMOTION_ARRAY"/>
+		<result property="stressArray" column="STRESS_ARRAY"/>
+		<result property="emotionContent" column="EMOTION_CONTENT"/>
+		<result property="stressAgree" column="STRESS_AGREE"/>
+		<result property="diaryAgree" column="DIARY_AGREE"/>
+		<result property="emotionDate" column="EMOTION_DT"/>
+		<result property="emotionUpdateDate" column="EMOTION_UD"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+	</resultMap>
+
+	<!-- 스트레스 증상 -->
+	<select id="emotionCategory" resultMap="emotionCategoryRm">
+		SELECT * FROM EMOTION_DIARY_CATEGORY
+		ORDER BY EMOTION_CATEGORY_CD ASC
+	</select>
+
+	<insert id="insertEmotionDiary">
+		INSERT INTO EMOTION_DIARY VALUES(
+			SEQ_EMOTION_DIARY_NO.NEXTVAL, #{emotionArray}, #{stressArray}, #{emotionContent}, #{stressAgree}, #{diaryAgree}, DEFAULT, DEFAULT, #{memberNo}
+		)
+	</insert>
+
+	<select id="selectEmotionRecord" resultMap="emotionDiaryRm">
+		SELECT EMOTION_NO, EMOTION_ARRAY, STRESS_ARRAY, EMOTION_CONTENT, STRESS_AGREE, DIARY_AGREE, TO_CHAR(EMOTION_DT, 'YYYY-MM-DD') EMOTION_DT, TO_CHAR(EMOTION_UD, 'YYYY-MM-DD') EMOTION_UD, MEMBER_NO
+		FROM EMOTION_DIARY
+		WHERE TO_CHAR(EMOTION_DT, 'YYYY-MM-DD') = #{selectDate}
+		AND MEMBER_NO = #{memberNo}
+	</select>
+
+	<select id="selectEmotionDiaryDate" resultType="string">
+		SELECT TO_CHAR(EMOTION_DT, 'YYYY-MM-DD') EMOTION_DT
+		FROM EMOTION_DIARY
+		WHERE MEMBER_NO = #{memberNo}
+		ORDER BY EMOTION_DT DESC
+	</select>
+
+	<update id="updateEmotionDiary">
+		UPDATE EMOTION_DIARY SET
+			EMOTION_ARRAY = #{emotionArray},
+			STRESS_ARRAY = #{stressArray},
+			EMOTION_CONTENT = #{emotionContent},
+			STRESS_AGREE = #{stressAgree},
+			DIARY_AGREE = #{diaryAgree},
+			EMOTION_UD = SYSDATE
+		WHERE EMOTION_NO = #{emotionNo}
+		AND TO_CHAR(EMOTION_DT, 'YYYY-MM-DD') = #{emotionDate}
+		AND MEMBER_NO = #{memberNo}
+	</update>
+
+</mapper>

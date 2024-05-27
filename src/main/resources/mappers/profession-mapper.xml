@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="professionMapper">
+
+    <resultMap id="profession_rm" type="Profession">
+        <id property="professionNo" column="PROFESSION_NO"/>
+        <result property="professionId" column="PROFESSION_ID"/>
+        <result property="professionPw" column="PROFESSION_PW"/>
+        <result property="professionName" column="PROFESSION_NM"/>
+        <result property="professionPhone" column="PROFESSION_PHONE"/>
+        <result property="professionEnrollDate" column="PROFESSION_ENROLL_DT"/>
+        <result property="professionGender" column="PROFESSION_GENDER"/>
+        <result property="professionBirth" column="PROFESSION_BIRTH"/>
+        <result property="professionAuthKey" column="PROFESSION_AUTH_KEY"/>
+        <result property="authStatus" column="AUTH_STATUS"/>
+        <result property="remarks" column="REMARKS"/>
+        <result property="statusCode" column="STATUS_CD"/>
+        <result property="worryName" column="WORRY_NM"/>
+
+        <result property="professionMajor" column="PROFESSION_MAJOR"/>
+        <result property="professionIntro" column="PRO_INTRO"/>
+        <result property="professionStory" column="PRO_STORY"/>
+        <result property="proCarrer" column="PRO_CARRER"/>
+        <result property="professionTag" column="PRO_TAG"/>
+        <result property="counselCategoryCode" column="COUNSEL_CATEGORY_NO"/>
+        <result property="counselPrice" column="COUNSEL_PRICE"/>
+        <result property="imagePath" column="IMAGE_PATH"/>
+        <result property="imageName" column="IMAGE_NM"/>
+
+        <result property="memberNo" column="MEMBER_NO"/>
+        <result property="memberEmail" column="MEMBER_ID"/>
+        <result property="memberName" column="MEMBER_NM"/>
+        <result property="memberPhone" column="MEMBER_PHONE"/>
+        <result property="reservationEnrollDate" column="RESERVATION_ENROLL_DT"/>
+        <result property="reservationEnrollTime" column="RESERVATION_ENROLL_TIME"/>
+        <result property="hospitalName" column="HOSPITAL_NM"/>
+
+        <result property="starAvg" column="REVIEW_STARPOINT"/>
+        <result property="reviewCount" column="REVIEW_COUNT"/>
+        <result property="maxValue" column="MAX_VALUE"/>
+    </resultMap>
+    
+    <resultMap id="professionInfo_rm" type="ProfessionInfo">
+        <id property="professionNo" column="PROFESSION_NO"/>
+        <result property="professionUniversity" column="PROFESSION_UNIVERSITY"/>
+        <result property="professionDepartment" column="PROFESSION_DEPARTMENT"/>
+        <result property="professionMajor" column="PROFESSION_MAJOR"/>
+        <result property="professionIntro" column="PRO_INTRO"/>
+        <result property="professionStory" column="PRO_STORY"/>
+        <result property="professionCarrer" column="PRO_CARRER"/>
+        <result property="professionTag" column="PRO_TAG"/>
+        <result property="imagePath" column="IMAGE_PATH"/>
+        <result property="imageName" column="IMAGE_NM"/>
+    </resultMap>
+    
+    <resultMap id="professionHospital_rm" type="ProfessionHospital">
+        <id property="professionNo" column="PROFESSION_NO"/>
+        <result property="hospitalName" column="HOSPITAL_NM"/>
+        <result property="hospitalAddress" column="HOSPITAL_ADDR"/>
+        <result property="hospitalPhone" column="HOSPITAL_PHONE"/>
+        <result property="businessNo" column="BUSINESS_NO"/>
+        <result property="maxValue" column="MAX_VALUE"/>
+    </resultMap>
+
+    <resultMap  id="professionPrice_rm" type="ProfessionPrice">
+    	<result property="professionNo" column="PROFESSION_NO"/>
+    	<result property="counselCategoryCode" column="COUNSEL_CATEGORY_NO"/>
+    	<result property="counselPrice" column="COUNSEL_PRICE"/>
+    </resultMap>
+
+    <resultMap id="worryCategory_rm" type="WorryCategory">
+        <result property="worryCategoryCode" column="WORRY_CT_CD"/>
+        <result property="worryName" column="WORRY_NM"/>
+    </resultMap>
+
+    <resultMap id="chatMessage_rm" type="ChatMessage">
+        <id property="chatNo" column="CHAT_NO"/>
+
+        <result property="message" column="MESSAGE"/>
+        <result property="createDate" column="CREATE_DT"/>
+        <result property="professionNo" column="PROFESSION_NO"/>
+        <result property="memberNo" column="MEMBER_NO"/>
+        <result property="chattingNo" column="CHATTING_NO"/>
+        <result property="memberName" column="MEMBER_NM"/>
+    </resultMap>
+
+    <resultMap type="Image" id="image_rm">
+		<id property="imageNo" column="IMAGE_NO"/>
+		<result property="imagePath" column="IMAGE_PATH"/>
+		<result property="imageName" column="IMAGE_NM"/>
+		<result property="imageOriginal" column="IMAGE_ORIGINAL"/>
+		<result property="imageLevel" column="IMAGE_LEVEL"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="boardNo" column="PROFESSION_NO"/>
+		<result property="professionNo" column="BOARD_NO"/>
+	</resultMap>
+	
+	
+	 <resultMap id="reservation_rm" type="Reservation">
+        <id property="reservationNo" column="RESERVATION_NO"/>
+
+        <result property="reservationEnrollDate" column="RESERVATION_ENROLL_DT"/>
+        <result property="reservationEnrollTime" column="RESERVATION_ENROLL_TIME"/>
+        <result property="reservationStatusCode" column="RESERVATION_STATUS_CD"/>
+        <result property="reservationCancel" column="RESERVATION_CANCEL"/>
+        <result property="counselCategoryNo" column="COUNSEL_CATEGORY_NO"/>
+        <result property="reservationPayNo" column="RESERVATION_PAY_NO"/>
+        <result property="counselCategoryNm" column="COUNSEL_CATEGORY_NM"/>
+        <result property="PayNo" column="RESERVATION_PAY_NO"/>
+        <result property="memberNo" column="MEMBER_NO"/>
+        <result property="memberName" column="MEMBER_NM"/>
+        <result property="professionNo" column="PROFESSION_NO"/>
+        <result property="statusCode" column="STATUS_CD"/>
+    </resultMap>
+    
+    
+	<!-- 쪽지 vo -->
+	<resultMap type="Letter" id="Letter_rm">
+        <id property="letterNo" column="LETTER_NO"/>
+        <result property="letterContent" column="LETTER_CONTENT"/>
+        <result property="letterDate" column="LETTER_DT"/>
+        <result property="letterRead" column="LETTER_READ"/>
+        <result property="letterType" column="LETTER_TYPE"/>
+        <result property="letterStatusCode" column="LETTER_STATUS_CD"/>
+        <result property="memberNo" column="MEMBER_NO"/>
+        <result property="professionNo" column="PROFESSION_NO"/>
+        <result property="letterReply" column="LETTER_REPLY"/>
+    </resultMap>
+	    <select id="selectProfessionRegister" resultMap="profession_rm">
+	    	SELECT STATUS_CD FROM PROFESSION WHERE PROFESSION_NO = #{professionNo}
+	    </select>
+
+    <select id="selectProfessionCount" resultType="_int">
+        SELECT COUNT(*) MAX_VALUE FROM(
+              SELECT COUNT(*)
+              FROM PROFESSION_PRICE
+                       JOIN PROFESSION USING(PROFESSION_NO)
+                       LEFT JOIN IMAGE USING(PROFESSION_NO)
+              WHERE BOARD_NO IS NULL AND IMAGE_LEVEL = 1 AND PROFESSION.STATUS_CD = 4
+              GROUP BY PROFESSION_NO
+        )
+    </select>
+	<!--    그그그머냐ㅐ 그거 검색 -->
+    <!-- 제발...제발...제발...제발...제발...제발...제발...제발...제발... 안되면 나락이다 -->
+    <select id="selectProfessionAll" resultMap="profession_rm">
+        SELECT * FROM(
+        SELECT ROWNUM AS RNUM, TEMP.*,
+        (SELECT COUNT(*) FROM REVIEW WHERE REVIEW.PROFESSION_NO = TEMP.PROFESSION_NO) REVIEW_COUNT,
+        (SELECT NVL(AVG(REVIEW_STARPOINT), 0) FROM REVIEW WHERE REVIEW.PROFESSION_NO = TEMP.PROFESSION_NO)
+        REVIEW_STARPOINT
+        FROM(
+        SELECT PROFESSION_NO, PROFESSION_NM, PROFESSION_PHONE, PROFESSION_MAJOR,
+        PRO_INTRO, PRO_STORY, PRO_CARRER, PRO_TAG, IMAGE_PATH, IMAGE_NM,
+        COUNSEL_CATEGORY_NO, COUNSEL_PRICE
+        FROM (SELECT PP.PROFESSION_NO,
+        LISTAGG(PP.COUNSEL_CATEGORY_NO,',') WITHIN GROUP(ORDER BY PP.PROFESSION_NO) AS COUNSEL_CATEGORY_NO,
+        LISTAGG(PP.COUNSEL_PRICE,',') WITHIN GROUP(ORDER BY PP.PROFESSION_NO) AS COUNSEL_PRICE
+        FROM PROFESSION_PRICE PP
+        <if test="therapy != 0">
+            WHERE COUNSEL_CATEGORY_NO = #{therapy}
+        </if>
+        GROUP BY PP.PROFESSION_NO) PR
+        JOIN PROFESSION USING(PROFESSION_NO)
+        JOIN PROFESSION_INFORMATION USING(PROFESSION_NO)
+        LEFT JOIN IMAGE USING(PROFESSION_NO)
+        WHERE BOARD_NO IS NULL AND IMAGE_LEVEL = 1 AND PROFESSION.STATUS_CD = 4
+            <if test="categoryArr != null ">
+                AND PROFESSION_NO IN
+                (SELECT PROFESSION_NO FROM PROFESSION_INFORMATION
+                WHERE
+                <foreach collection="categoryArr" item="category" open="(" close=")" separator=" OR ">
+                    PRO_TAG LIKE '%' || #{category} || '%'
+                </foreach>)
+            </if>
+            <if test="proName != null">
+                AND PROFESSION_NM LIKE '%'||#{proName}||'%'
+            </if>
+            <if test="gender != null">
+                AND PROFESSION_GENDER LIKE '%'||#{gender}||'%'
+            </if>
+        )TEMP)
+        WHERE RNUM BETWEEN #{first} AND #{last}
+    </select>
+
+
+    <select id="selectProOne" resultMap="profession_rm">
+        SELECT PROFESSION_NO, PROFESSION_NM, PROFESSION_PHONE, PROFESSION_MAJOR,
+               PRO_INTRO, PRO_STORY, PRO_CARRER, PRO_TAG, IMAGE_PATH, IMAGE_NM,
+               LISTAGG(COUNSEL_CATEGORY_NO,',') WITHIN GROUP(ORDER BY PROFESSION_NO) AS COUNSEL_CATEGORY_NO,
+               LISTAGG(COUNSEL_PRICE,',') WITHIN GROUP(ORDER BY PROFESSION_NO) AS COUNSEL_PRICE
+        FROM PROFESSION_PRICE
+            JOIN PROFESSION USING(PROFESSION_NO)
+            JOIN PROFESSION_INFORMATION USING(PROFESSION_NO)
+            LEFT JOIN IMAGE USING(PROFESSION_NO)
+        WHERE BOARD_NO IS NULL AND PROFESSION_NO = #{professionNo} AND IMAGE_LEVEL = 1
+        GROUP BY PROFESSION_NO, PROFESSION_NM, PROFESSION_PHONE, PROFESSION_MAJOR, PRO_INTRO,
+            PRO_STORY, PRO_CARRER, PRO_TAG, IMAGE_PATH, IMAGE_NM
+    </select>
+    <select id="selectMemberProfession" resultMap="profession_rm">
+        SELECT PROFESSION_NO, PROFESSION_NM, M.MEMBER_NO, M.MEMBER_ID,
+               M.MEMBER_NM, M.MEMBER_PHONE, RESERVATION_ENROLL_DT, IMAGE_PATH, IMAGE_NM,
+               REGEXP_REPLACE(LISTAGG(RESERVATION_ENROLL_TIME, ',') WITHIN GROUP(ORDER BY RESERVATION_NO), '([^,]+)(,\1)*(,|$)', '\1\3') RESERVATION_ENROLL_TIME
+        FROM RESERVATION_PAYMENT
+                 JOIN RESERVATION USING(RESERVATION_PAY_NO)
+                 JOIN PROFESSION_PRICE USING(PROFESSION_NO)
+                 JOIN PROFESSION USING(PROFESSION_NO)
+                 LEFT JOIN IMAGE USING(PROFESSION_NO)
+                 JOIN MEMBER M ON(M.MEMBER_NO = RESERVATION_PAYMENT.MEMBER_NO)
+        WHERE RESERVATION_ENROLL_DT &gt; SYSDATE AND PROFESSION_NO = #{professionNo}
+        GROUP BY PROFESSION_NO, PROFESSION_NM, M.MEMBER_NO, M.MEMBER_ID,
+                 M.MEMBER_NM, M.MEMBER_PHONE, RESERVATION_ENROLL_DT, IMAGE_PATH, IMAGE_NM
+    </select>
+
+	<!-- 지도 병원  -->
+    <select id="loadProMap" resultMap="professionHospital_rm">
+        SELECT RESULT.* FROM(
+            SELECT ROWNUM AS RNUM, TEMP.* FROM(
+                SELECT PH.*
+                FROM PROFESSION_HOSPITAL PH)TEMP) RESULT
+        WHERE RNUM BETWEEN #{first} AND #{last}
+    </select>
+    
+    <!-- 이메일 중복확인 -->
+    <select id="idCheck" parameterType="string" resultType="_int">
+    	SELECT COUNT(*) FROM PROFESSION WHERE PROFESSION_ID = #{professionId} AND  STATUS_CD != 1
+    </select>
+    
+    
+    <!-- 상담사 등록 - 기본 -->
+    <insert id="proRegister" parameterType="Profession">
+        INSERT INTO PROFESSION
+            (PROFESSION_NO,PROFESSION_ID,PROFESSION_PW,PROFESSION_NM,PROFESSION_PHONE,
+            PROFESSION_ENROLL_DT,PROFESSION_GENDER,STATUS_CD,PROFESSION_BIRTH,PROFESSION_AUTH_KEY,AUTH_STATUS)
+
+        VALUES(
+            SEQ_PROFESSION_NO.NEXTVAL,
+            #{professionId},
+            #{professionPw},
+            #{professionName},
+            #{professionPhone},
+            DEFAULT,
+            #{professionGender},
+            DEFAULT,
+            #{professionBirth},
+            #{professionAuthKey},
+            DEFAULT
+        )
+    </insert>
+    
+    	
+	<!-- 상담사 학력증명서 입력 -->
+	<insert id="insertCertification" parameterType="Image">
+		INSERT INTO IMAGE (IMAGE_NO,IMAGE_PATH,IMAGE_NM,IMAGE_ORIGINAL,IMAGE_LEVEL,PROFESSION_NO)
+		VALUES(SEQ_IMAGE_NO.NEXTVAL,#{imagePath},#{imageName},#{imageOriginal},#{imageLevel},#{professionNo})
+	</insert>
+	
+
+    <!-- 프로필 view용 가격조회 -->
+    <select id="selectPrice" resultMap="professionPrice_rm">
+        SELECT COUNSEL_CATEGORY_NO, COUNSEL_PRICE
+        FROM PROFESSION_PRICE
+        WHERE PROFESSION_NO = #{professionNo}
+    </select>
+  
+  <!--프로필 수정  -->
+    <update id="updateProProfile" parameterType="ProfessionInfo">
+        UPDATE PROFESSION_INFORMATION SET PRO_INTRO =#{professionIntro} , PRO_STORY=#{professionStory},
+            PRO_CARRER=#{professionCarrer}, PRO_TAG=#{professionTag}
+        WHERE PROFESSION_NO = #{professionNo}
+    </update>
+  
+    <!-- authstatus 컬럼을  0 에서 1로 업데이트-->
+    <update id="chkAuth" parameterType="Profession" >
+        UPDATE PROFESSION SET AUTH_STATUS = 1 WHERE PROFESSION_ID = #{professionId}
+    </update>
+
+
+    <select id="selectPro" resultMap="profession_rm">
+        SELECT PROFESSION_NO,PROFESSION_ID,PROFESSION_PW,PROFESSION_NM,PROFESSION_PHONE,
+            PROFESSION_ENROLL_DT,PROFESSION_GENDER,STATUS_CD,PROFESSION_BIRTH,PROFESSION_AUTH_KEY,AUTH_STATUS
+        FROM PROFESSION WHERE PROFESSION_ID = #{professionId}
+    </select>
+
+
+    <!-- 상담사 병원정보 insert -->
+    <insert id="insertProHospital" parameterType="ProfessionHospital">
+        INSERT INTO PROFESSION_HOSPITAL VALUES(#{professionNo},#{hospitalName}, #{hospitalAddress}, #{hospitalPhone}, #{businessNo})
+    </insert>
+
+    <insert id="insertProInfo" parameterType="ProfessionInfo">
+        INSERT INTO PROFESSION_INFORMATION (PROFESSION_NO,PROFESSION_UNIVERSITY,PROFESSION_DEPARTMENT,PROFESSION_MAJOR)
+        VALUES(#{professionNo},#{professionUniversity},#{professionDepartment},#{professionMajor})
+    </insert>
+
+	<insert id="insertPrice">
+		INSERT INTO PROFESSION_PRICE VALUES(#{professionNo},#{categoryCode},20000) 
+	</insert>
+    <!-- 로그인 -->
+    <select id="proLogin" resultMap="profession_rm">
+        SELECT *
+        FROM PROFESSION
+        WHERE PROFESSION_ID = #{professionId}
+        AND STATUS_CD in(3,4) AND AUTH_STATUS =1
+    </select>
+
+    <update id="updatePrice">
+        UPDATE PROFESSION_PRICE SET COUNSEL_PRICE =#{counselPrice}
+        WHERE PROFESSION_NO = #{professionNo} AND COUNSEL_CATEGORY_NO=#{categoryCode}
+    </update>
+    
+    <select id="selectProfilePic" parameterType="Image"  resultMap="image_rm">
+    	SELECT IMAGE_NO FROM IMAGE WHERE PROFESSION_NO=#{professionNo} AND IMAGE_LEVEL=#{imageLevel}
+    </select>
+
+	<!-- 상담사 프로필사진 Insert-->
+	<insert id="insertProfilePic" parameterType="Image">
+		INSERT INTO IMAGE (IMAGE_NO,IMAGE_PATH,IMAGE_NM,IMAGE_ORIGINAL,IMAGE_LEVEL,PROFESSION_NO)
+		VALUES(SEQ_IMAGE_NO.NEXTVAL,#{imagePath},#{imageName},#{imageOriginal},#{imageLevel},#{professionNo})
+	</insert>
+	
+	<!-- 상담사 사진 업데이트  -->
+	<update id="updateProfilePic">
+		UPDATE IMAGE SET 
+			IMAGE_PATH = #{imagePath},
+			IMAGE_NM = #{imageName},
+			IMAGE_ORIGINAL=#{imageOriginal}
+			
+		WHERE PROFESSION_NO=#{professionNo}
+		AND IMAGE_LEVEL=#{imageLevel}
+			
+	</update>
+
+
+    <!-- 채팅방 입장 -->
+    <select id="existsChat"  resultType="_int">
+        SELECT NVL(MAX(CHATTING_NO), 0)
+        FROM CHATTING
+        WHERE RESERVATION_NO = #{reservationNo}
+        AND PROFESSION_NO = #{professionNo}
+        AND CHATTING_STATUS_CD = 1
+    </select>
+
+    <!-- 채팅 메시지 -->
+    <select id="selectChatMessage" resultMap="chatMessage_rm">
+        SELECT MESSAGE,
+            TO_CHAR(CREATE_DT, 'AM', 'nls_date_language=korean') || ' ' || TO_CHAR(CREATE_DT, 'HH:MI') CREATE_DT,
+            MEMBER_NO, PROFESSION_NO, MEMBER_NM
+        FROM CHATTING_MESSAGE
+        LEFT JOIN MEMBER USING(MEMBER_NO)
+        WHERE CHATTING_NO = #{chattingNo}
+        ORDER BY CHAT_NO
+    </select>
+    
+    
+    <!-- 예약리스트 조회 -->
+    <select id="classList" resultMap="reservation_rm">
+ 	SELECT r.RESERVATION_NO,
+        TO_CHAR(r.RESERVATION_ENROLL_DT,'YYYY-MM-DD') "RESERVATION_ENROLL_DT", r.RESERVATION_ENROLL_TIME, r.COUNSEL_CATEGORY_NO, cc.COUNSEL_CATEGORY_NM,
+        rp.RESERVATION_PAY_NO, m.MEMBER_NM, rp.PROFESSION_NO, r.RESERVATION_STATUS_CD
+	FROM RESERVATION_PAYMENT rp
+	JOIN RESERVATION r ON r.RESERVATION_PAY_NO = RP.RESERVATION_PAY_NO
+	JOIN COUNSEL_CATEGORY cc ON CC.COUNSEL_CATEGORY_NO = R.COUNSEL_CATEGORY_NO
+	JOIN MEMBER m ON rp.MEMBER_NO = m.MEMBER_NO
+	WHERE PROFESSION_NO = #{professionNo}
+	AND rp.STATUS_CD = 1
+	ORDER BY RESERVATION_ENROLL_DT, RESERVATION_ENROLL_TIME
+    </select>
+
+    <select id="selectWishPro" resultType="_int">
+        SELECT COUNT(*)
+        FROM PROFESSION_WISH
+        WHERE MEMBER_NO = #{memberNo} AND PROFESSION_NO = #{professionNo}
+    </select>
+
+    <delete id="deleteWish">
+        DELETE FROM PROFESSION_WISH
+        WHERE MEMBER_NO = #{memberNo} AND PROFESSION_NO = #{professionNo}
+    </delete>
+    
+    <insert id="insertWish">
+        INSERT INTO PROFESSION_WISH VALUES(#{memberNo}, #{professionNo})
+    </insert>
+    
+    <!-- 상담사 쪽지 문의보내기 -->
+    <insert id="proLetterInsert">
+    	INSERT INTO LETTER
+    	VALUES(SEQ_LETTER_NO.NEXTVAL,#{letterContent},SYSDATE,0,1,0,#{memberNo},#{professionNo},NULL)
+    </insert>
+    
+    <select id="CounselCategoryCodeSelect" resultType="string">
+    	SELECT PRO_TAG FROM PROFESSION_INFORMATION WHERE PROFESSION_NO = #{professionNo}
+    </select>
+
+    <select id="selectProRandom" resultMap="profession_rm">
+        <![CDATA[
+            SELECT * FROM (
+                SELECT PROFESSION_NO, PROFESSION_NM, PROFESSION_PHONE, PROFESSION_MAJOR,
+                    PRO_INTRO, PRO_STORY, PRO_CARRER, PRO_TAG, IMAGE_PATH, IMAGE_NM,
+                    LISTAGG(COUNSEL_CATEGORY_NO,',') WITHIN GROUP(ORDER BY PROFESSION_NO) AS COUNSEL_CATEGORY_NO,
+                    LISTAGG(COUNSEL_PRICE,',') WITHIN GROUP(ORDER BY PROFESSION_NO) AS COUNSEL_PRICE
+                FROM PROFESSION_PRICE
+                JOIN PROFESSION USING(PROFESSION_NO)
+                JOIN PROFESSION_INFORMATION USING(PROFESSION_NO)
+                LEFT JOIN IMAGE USING(PROFESSION_NO)
+                WHERE BOARD_NO IS NULL AND IMAGE_LEVEL = 1
+                GROUP BY PROFESSION_NO, PROFESSION_NM, PROFESSION_PHONE, PROFESSION_MAJOR, PRO_INTRO,
+                    PRO_STORY, PRO_CARRER, PRO_TAG, IMAGE_PATH, IMAGE_NM
+                ORDER BY DBMS_RANDOM.RANDOM
+            )
+        ]]>
+    </select>
+
+	<select id="selectProfessionInfo" resultMap="professionInfo_rm" >
+  		SELECT PROFESSION_NO,PROFESSION_UNIVERSITY,PROFESSION_DEPARTMENT,PROFESSION_MAJOR,PRO_INTRO,PRO_STORY,PRO_CARRER,PRO_TAG,IMAGE_PATH,IMAGE_NM
+		FROM PROFESSION_INFORMATION
+    	JOIN IMAGE USING(PROFESSION_NO)
+    	WHERE PROFESSION_NO = #{professionNo} AND IMAGE_LEVEL = 1
+	</select>
+	
+	<select id="selectProfessionHospital" resultMap="professionHospital_rm">
+		SELECT * FROM PROFESSION_HOSPITAL WHERE PROFESSION_NO = #{professionNo}
+	</select>
+
+
+    <select id="setCategory" resultType="string">
+        <![CDATA[
+            SELECT LISTAGG(WORRY_NM, ',') WITHIN GROUP(ORDER BY WORRY_CATEGORY_CD) AS WORRY_NM
+            FROM WORRY_CATEGORY
+            WHERE WORRY_CATEGORY_CD IN(
+                SELECT REGEXP_SUBSTR(A.MYDATAS,'[^,]+', 1, ROWNUM) AS MYDATA
+                FROM (
+                    SELECT PI.PROFESSION_NO, PRO_TAG AS MYDATAS
+                    FROM PROFESSION_INFORMATION PI
+                    WHERE PI.PROFESSION_NO = #{professionNo}
+                ) A
+            CONNECT BY ROWNUM <= LENGTH(REGEXP_REPLACE(MYDATAS,'[^,]+')) + 1
+            )
+        ]]>
+    </select>
+    
+    <select id="loadProMapCount" resultType="_int">
+        SELECT COUNT(*) MAX_VALUE
+        FROM PROFESSION_HOSPITAL
+    </select>
+
+    <select id="getGmProfession" resultMap="profession_rm">
+        SELECT PROFESSION_NO, PROFESSION_ID, PROFESSION_NM, PROFESSION_PHONE,
+               PROFESSION_ENROLL_DT, STATUS_CD, AUTH_STATUS, HOSPITAL_NM, HOSPITAL_ADDR
+        FROM PROFESSION
+                 JOIN PROFESSION_HOSPITAL USING(PROFESSION_NO)
+        WHERE STATUS_CD IN (3, 4)
+    </select>
+
+    <update id="stopProfession">
+        UPDATE PROFESSION
+        SET STATUS_CD = 3
+        WHERE PROFESSION_NO = #{professionNo}
+    </update>
+    <update id="rollbackProfession">
+        UPDATE PROFESSION
+        SET STATUS_CD = 4
+        WHERE PROFESSION_NO = #{professionNo}
+    </update>
+	
+</mapper>

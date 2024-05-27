@@ -1,0 +1,260 @@
+
+.main_wrap{
+    width: 100%;
+    height:1225px;
+  	overflow: visible;
+}
+
+.main_content22 *{
+    max-width:1200px;
+    margin: 0 auto;
+    font-family: 'Poppins';
+}
+
+html{
+    scroll-behavior: smooth;
+
+}
+
+*{box-sizing: border-box;}
+
+
+/* 예약 확인 왼쪽 박스*/
+
+/* 예약확인 공통 class */
+.box_style{
+    border:1px solid #ddd;
+    border-radius: 4px;
+    padding: 25px 20px;
+    margin-top:25px;
+    /* transition: 0.5s; */
+}
+
+
+
+.tuition_font{
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.tuition_sub{
+    font-size: 13px;
+    font-weight: 500;
+    color: #ddd;
+}
+
+/* 예약확인 공통 class 끝 */
+
+#reservation_confirm_wrap{
+    width:68%;
+    height: 1120px;
+    background-color: #fff;
+    margin-top: 50px;
+    box-shadow: 5px 0 40px rgb(0 0 0 / 8%);
+    border-radius: 8px;
+    padding:50px;
+}
+
+#reservation_confirm{
+    width:100%;
+}
+/* 예약한 테라피 종류, 횟수 */
+.reservation_confirm_proname{
+    margin: 38px 0 0 20px;
+}
+
+
+.reservation_confirm_proname > h1{
+    font-size: 23px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* 종류, 횟수 선택 */
+#tuition{
+    width:100%;
+}
+
+.pro_reservation tr{
+    width:100%;
+    height:40px;
+}
+
+.pro_reservation_select{
+    width:100%;
+}
+
+.pro_reservation th{
+    width:15%;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.pro_reservation td{
+    width:60%;
+    vertical-align: middle;
+}
+.pro_reservation select{
+    width:100%;
+    height: 40px;
+    border: none;
+    font-size:15px;
+}
+
+.select_box{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+
+/* 날짜 지정 */
+#tuition_date{
+    width:100%;
+    height:560px;
+}
+
+
+/* 시간지정 */
+#tuition_time{
+    width: 100%;
+}
+
+#tuition_time_wrap{
+    height: 135px;
+}
+
+#time_select{
+    width:100%;
+    height: 40px;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/* 결제 확인 오른쪽 상자 */
+#reservation_pay_wrap{
+    width:30%;
+    height:360px;
+    background-color: #fff;
+    margin-top: 50px;
+    box-shadow: 5px 0 40px rgb(0 0 0 / 8%);
+    border-radius: 8px;
+    padding:20px;
+    border-radius: 4px;
+}
+
+#reservation_pay{
+    height: 200px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.pro_price{
+    line-height:40px;
+    margin-bottom: 20px;
+
+}
+
+.pro_price_title{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#price{
+    font-size: 25px;
+    font-weight: bold;
+    color:#a59999;
+}
+
+#price > span{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.final_pay button{
+    width:100%;
+    height: 50px;
+    border:1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.5s;
+}
+
+.final_pay button:hover{
+    background-color: #a59999;
+    border:1px solid #a59999;
+    color: #fff;
+}
+
+@media screen and (max-width: 1280px) {
+	main{
+		width:100%;
+	}
+	
+    .main_content22{
+        padding: 0 20px;
+    }
+
+    #reservation_confirm_wrap{
+        width:100%;
+    }
+    #reservation_pay_wrap{
+        width: 100%;
+    }
+    #tuition_date{
+        height:570px;
+    }
+}
+
+/* 달력 */
+
+table{
+    width: 100%;
+    text-align: center;
+    
+}
+
+.YM{
+    font-size: 15px;
+    font-weight: bold;
+}
+.YMcss{
+    color:#a59999;
+    border-bottom: 4px solid #a59999;
+}
+
+.calendar tr {
+    width: 100%;
+}
+
+.calendar td {
+    cursor: pointer;
+    width: 14.2%;
+    height:65px;
+    line-height:63px;
+    font-size: 17px;
+    font-weight: 600;
+
+}
+
+
+#calendar_left{
+    float: left;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#calendar_right{
+    float:right;
+    font-weight: bold;
+    cursor: pointer;
+}

@@ -1,0 +1,32 @@
+.admin{
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    /*background-color: #f8f8f8;*/
+    background-color: white;
+    font-weight: bold;
+}
+.admin a{color: black;}
+.admin li{
+    display: inline-block;
+    width: 19%;
+    text-align: center;
+}
+
+.underLine{border-bottom: 1px solid #ccc;}
+
+.changeMember{border: 1px solid #ccc; width: 80%;}
+table{text-align: center;}
+
+
+.firstSpan{
+    width: 25%;
+    font-weight: bold;
+}
+.secondSpan{
+    width: 75%;
+}
+.divTable{
+    width: 100%; display: flex;
+    margin: 20px 0 0 0;
+}

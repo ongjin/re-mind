@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="selftestMapper">
+
+    <!-- 질문 / 응답 리절트 맵 -->
+    <resultMap id="selftest_rm" type="Selftest">
+
+        <id property="categoryNo" column="CATEGORY_NO"/>
+
+        <result property="questionNo" column="QUESTION_NO"/>
+        <result property="questionContent" column="QUESTION_CONTENT"/>
+        <result property="resultNo" column="RESULT_NO"/>
+        <result property="resultContent" column="RESULT_CONTENT"/>
+        <result property="score" column="RESULT_RATE"/>
+        <result property="resultGender" column="RESULT_GENDER"/>
+        <result property="answerNo" column="ANSWER_NO"/>
+        <result property="answerType" column="ANSWER_TYPE"/>
+        <result property="answerContent" column="ANSWER_CONTENT"/>
+        <result property="categoryNo" column="CATEGORY_NO"/>
+        <result property="categoryName" column="CATEGORY_NM"/>
+        <result property="queCount" column="Q_COUNT"/>
+        <result property="rate" column="RATE"/>
+
+    </resultMap>
+
+    <!-- 결과창 리절트 맵 -->
+    <!--<resultMap id="selftest_result_rm" type="Selftest">
+
+
+    </resultMap>-->
+    <!--<select id="selectQ" resultMap="selftest_rm">
+        SELECT * FROM SELF_CHECK_QUESTION
+        where CATEGORY_NO = #{categoryNo}
+    </select>-->
+
+    <!--<select id="selectQ" resultMap="selftest_rm">
+        SELECT * FROM SELF_CHECK_QUESTION S
+        JOIN SELF_CHECK_CATEGORY A ON(A.CATEGORY_NO = S.CATEGORY_NO)
+        JOIN SELF_CHECK_ANSWER B ON(B.QUESTION_NO = S.QUESTION_NO)
+        JOIN SELF_CHECK_RESULT C ON(C.CATEGORY_NO = A.CATEGORY_NO)
+        WHERE S.CATEGORY_NO = #{categoryNo}
+    </select>-->
+
+    <!-- 문항 -->
+    <select id="selectQ" resultMap="selftest_rm">
+        SELECT (
+                SELECT COUNT(*) FROM SELF_CHECK_QUESTION WHERE CATEGORY_NO = #{categoryNo}) Q_COUNT,
+                QUESTION_CONTENT
+        FROM SELF_CHECK_QUESTION
+        WHERE CATEGORY_NO = #{categoryNo}
+        ORDER BY QUESTION_NO ASC
+    </select>
+
+    <!-- 응답 -->
+    <select id="selectA" resultMap="selftest_rm">
+        SELECT ANSWER_CONTENT, ANSWER_TYPE
+        FROM SELF_CHECK_ANSWER
+        WHERE CATEGORY_NO = #{categoryNo}
+        ORDER BY ANSWER_NO ASC
+    </select>
+
+    <!-- 결과 -->
+    <select id="selectR" resultMap="selftest_rm">
+        SELECT ROWNUM, CATEGORY_NO, RESULT_CONTENT, RESULT_RATE, RESULT_NO
+        FROM SELF_CHECK_RESULT
+        WHERE CATEGORY_NO = #{categoryNo}
+        ORDER BY RESULT_NO ASC
+    </select>
+
+    <!-- 결과창 화면 -->
+    <select id="selectResult" resultMap="selftest_rm">
+        <![CDATA[
+            SELECT * FROM(
+            SELECT ROWNUM AS RNUM, R.* FROM (
+            SELECT CATEGORY_NO, RESULT_CONTENT, RESULT_RATE, RESULT_NO
+            FROM SELF_CHECK_RESULT
+            WHERE CATEGORY_NO = #{categoryNo}
+            AND RESULT_RATE >= #{score}
+            ORDER BY RESULT_RATE ASC
+            ) R)
+            WHERE RNUM < 2
+        ]]>
+    </select>
+
+
+
+
+
+
+
+
+
+</mapper>

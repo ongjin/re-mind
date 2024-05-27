@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reviewMapper">
+
+    <resultMap type="Review" id="Review_rm">
+    	<id property="reviewNo" column="REVIEW_NO"/>
+    	<result property="reviewContent" column="REVIEW_CONTENT"/>
+    	<result property="reviewStarPoint" column="REVIEW_STARPOINT"/>
+    	<result property="professionNo" column="PROFESSION_NO"/>
+    	<result property="memberNo" column="MEMBER_NO"/>
+    	<result property="reviewDate" column="REVIEW_DT"/>
+    	<result property="reservationNo" column="RESERVATION_NO"/>
+    </resultMap>
+    
+    
+    <insert id="reviewInsert">
+    	INSERT INTO REVIEW
+    	VALUES(SEQ_REVIEW_NO.NEXTVAL,#{reviewContent},#{reviewStarPoint},#{professionNo},#{memberNo},DEFAULT,#{reservationNo})
+    </insert>
+</mapper>

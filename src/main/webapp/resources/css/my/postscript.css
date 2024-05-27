@@ -1,0 +1,128 @@
+body>*{font-size: 15px}
+.main_content{padding: 60px 0 0 30px;}
+.postscript-page{font-weight: 700; font-size: 20px; display: inline-block; margin-bottom: 20px;}
+.postscriptWrap{margin-top: 10px; border-top: 1px solid #ededed;}
+.postscript-info{display: flex; font-weight: bold;  margin-top: 10px;     align-items: center;
+    margin-bottom: 5px;}
+
+
+.date{width: 22%; min-width: 22%;}
+.pro-name{width: 26%; min-width: 26%;}
+.chat{width: 9%; min-width: 9%;}
+.star-img{width: 20%; min-width: 20%;}
+.date, .chat, .star-img, .pro-name, .cdBtn{width: 20%; text-align: center;}
+.cdBtn{width: 50%; text-align: center; justify-content: end; }
+.cdBtn>button{color: white; border: none; width: 46%; border-radius: 5px;cursor: pointer; height: 25px;}
+.update{ background-color: #A59999;  }
+.delete{background-color: #E5D4C5;}
+
+.m-star-img{
+	display: none;
+}
+
+.postscript{background-color:#FCF7F3; margin-top: 5px; margin-bottom: 10px; padding: 20px; min-height: 115px;
+}
+
+
+/* 모달창 */
+#modal.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#modal .modal-window {
+    background: rgba(177, 177, 177, 0.7);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 400px;
+    height: 60px;
+    position: relative;
+    padding: 10px;
+}
+.content {
+    background: white;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    /* border-radius: 10px; */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 400px;
+    /* height: 500px; */
+    position: relative;
+    top: -30px;
+    padding: 10px;
+}
+#modal .title {
+    padding-left: 10px;
+    display: inline;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+
+}
+
+#modal .close-area {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+    font-size: 20px;
+}
+
+#modal .content {
+    margin-top: 20px;
+    padding: 0px 10px;
+    text-shadow: 1px 1px 2px gray;
+    color: black;
+}
+
+.content-textarea{resize: none; width: 377px; height: 150px; outline: none; border: 1px solid #ccc;}
+
+.content-update, .content-delete{
+    border: none;
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#con{text-align: center;}
+.postscript-img{display: flex; margin: 10px 0 10px 0; justify-content: space-between;}
+.postscript-cut{font-size: 10px; font-weight: bold; text-shadow: none; color: rgb(175, 175, 175);}
+
+
+
+@media screen and (max-width: 768px)  {
+    .main_content{padding: 0;}
+    .postscript-page {margin-left: 10px; margin-top: 30px;}
+    .postscript-info{    margin: 10px; font-size: 15px; font-weight: 600;}
+    
+    .board-page{margin-left: 20px;}
+    .footer_wrap{display: none;}
+    .star-img{display: none}
+    .m-star-img{display: block; margin-bottom: 10px}
+
+    .side_menu{display: inline-block;}
+    .side_menu > ul{display: flex;}
+    .side_menu > ul > li{width: 25%; text-align: start;}
+    .side_menu > ul > hr{display: none;}
+}

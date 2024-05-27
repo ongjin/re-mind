@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="worryMapper">
+
+    <resultMap type="WorryCategory" id="worryCategory_rm">
+    	<id property="worryCategoryCode" column="WORRY_CATEGORY_CD"/>
+    	<result property="worryName" column="WORRY_NM"/>
+    </resultMap>
+    
+    
+    <select id="selectWorryCategory" resultMap="worryCategory_rm">
+    	SELECT WORRY_CATEGORY_CD,WORRY_NM FROM WORRY_CATEGORY
+    </select>
+    
+</mapper>
