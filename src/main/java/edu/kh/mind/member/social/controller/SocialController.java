@@ -252,6 +252,11 @@ public class SocialController {
 
         //Google OAuth Access Token 요청을 위한 파라미터 세팅
         GoogleOAuthRequest googleOAuthRequestParam =  new GoogleOAuthRequest();
+        googleOAuthRequestParam.setCode(authCode);
+        googleOAuthRequestParam.setClientId("va");
+        googleOAuthRequestParam.setClientSecret("va");
+        googleOAuthRequestParam.setRedirectUri("http://localhost:9000/mind/social/googleCallback");
+        googleOAuthRequestParam.setGrantType("va");
 
         //JSON 파싱을 위한 기본값 세팅
         //요청시 파라미터는 스네이크 케이스로 세팅되므로 Object mapper에 미리 설정해준다.

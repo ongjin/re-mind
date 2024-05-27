@@ -37,7 +37,16 @@
 <!--	<beans:bean id="naverLoginBO" class="edu.kh.mind.member.social.naver.NaverLoginBO"/>-->
 	<!-- google Class Bean설정 추가 -->
 	<!-- 클라이언트ID와 보안비밀 세팅-->
+	<beans:bean id="googleConnectionFactory"
+				class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg value="va" />
+		<beans:constructor-arg value="va" />
+	</beans:bean>
 	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" />
+		<beans:property name="redirectUri" value="http://localhost:9000/mind/social/googleCallback" />
+	</beans:bean>
 
 	<!-- 웹소켓과 매핑할 요청 주소 -->
 	<beans:bean id="chatHandler" class="edu.kh.mind.member.websocket.ChatWebsocketHandler" />
